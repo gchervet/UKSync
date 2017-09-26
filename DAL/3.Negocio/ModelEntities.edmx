@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NegocioEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Scamae_G.dbo.Controladores' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Controladores">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Codigo" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="Numero" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="UsoLec1" Type="int" />
+          <Property Name="UsoLec2" Type="int" />
+          <Property Name="Bloqueado" Type="int" />
+          <Property Name="Consola" Type="int" />
+          <Property Name="Horario" Type="int" />
+          <Property Name="Notas" Type="nvarchar" MaxLength="100" />
+          <Property Name="Firmware" Type="nvarchar" MaxLength="10" />
+          <Property Name="Alta" Type="datetime" />
+          <Property Name="TipoCard" Type="int" />
+          <Property Name="FormatoCard" Type="nvarchar" MaxLength="24" />
+          <Property Name="Puerto" Type="nvarchar" MaxLength="2" />
+          <Property Name="IP_Speed" Type="nvarchar" MaxLength="20" />
+          <Property Name="MACAddr" Type="nvarchar" MaxLength="12" />
+          <Property Name="Liberado" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="RegistraProh" Type="int" />
+          <Property Name="EsReloj" Type="int" />
+          <Property Name="VerFoto" Type="int" />
+          <Property Name="APB" Type="int" />
+          <Property Name="IpProtocol" Type="nvarchar" MaxLength="10" />
+          <Property Name="T_Pumoba" Type="int" />
+          <Property Name="T_SensPA" Type="int" />
+          <Property Name="UsoLec3" Type="int" />
+          <Property Name="UsoLec4" Type="int" />
+          <Property Name="PredVis" Type="int" />
+          <Property Name="MultiTablas" Type="int" />
+          <Property Name="QtyHabL" Type="int" />
+          <Property Name="QtyHabE" Type="int" />
+          <Property Name="nOpt1" Type="int" />
+          <Property Name="nOpt2" Type="int" />
+          <Property Name="nOpt3" Type="int" />
+          <Property Name="TMEF" Type="int" />
+          <Property Name="CamaraWeb" Type="nvarchar" MaxLength="50" />
+          <Property Name="EspCard" Type="nvarchar" MaxLength="40" />
+          <Property Name="TecFun" Type="int" />
+          <Property Name="HusoHorario" Type="int" />
+          <Property Name="IPPort" Type="nvarchar" MaxLength="4" />
+          <Property Name="Cacheo" Type="int" />
+          <Property Name="Parking" Type="int" />
+          <Property Name="Horario1" Type="int" />
+          <Property Name="Cliente" Type="int" />
+          <Property Name="TActuHabi" Type="varchar" MaxLength="5" />
+          <Property Name="MemLeida" Type="nvarchar" MaxLength="256" />
+          <Property Name="ConnStatus" Type="int" />
+          <Property Name="TxtDisplay" Type="nvarchar" MaxLength="20" />
+          <Property Name="Gateway" Type="nvarchar" MaxLength="15" />
+          <Property Name="MascaraIP" Type="nvarchar" MaxLength="15" />
+          <Property Name="DondeVer" Type="nvarchar" MaxLength="255" />
+          <Property Name="Planta" Type="int" />
+          <Property Name="HabiPtr" Type="nvarchar" MaxLength="6" />
+          <Property Name="UsoTablaH" Type="int" />
+          <Property Name="FechaLastComm" Type="datetime" />
+          <Property Name="THActivas" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Scamae_G.dbo.Fichadas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Fichadas">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Controlador" />
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Controlador" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Accion" Type="int" />
+          <Property Name="Consola" Type="int" />
+          <Property Name="Tarjeta" Type="int" />
+          <Property Name="Capturada" Type="datetime" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Transferida" Type="int" />
+          <Property Name="TReal" Type="int" />
+          <Property Name="Secuencia" Type="int" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="32" />
+          <Property Name="IdPerso" Type="int" />
+        </EntityType>
+        <EntityType Name="FichadasAdicional">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="EstadoSincro" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Scamae_G.dbo.Personas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Personas">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Apellido" />
+            <PropertyRef Name="OtraTarjeta" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+          <Property Name="Cargo" Type="int" />
+          <Property Name="Sector" Type="int" />
+          <Property Name="Seccion" Type="int" />
+          <Property Name="CentroDeCosto" Type="int" />
+          <Property Name="Division1" Type="int" />
+          <Property Name="Categoria" Type="int" />
+          <Property Name="Notas" Type="nvarchar" MaxLength="255" />
+          <Property Name="Legajo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tarjeta" Type="int" />
+          <Property Name="Otros" Type="nvarchar" MaxLength="50" />
+          <Property Name="Alta" Type="datetime" />
+          <Property Name="Baja" Type="datetime" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Adentro" Type="int" />
+          <Property Name="Nume2" Type="int" />
+          <Property Name="Horario" Type="int" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Sexo" Type="int" />
+          <Property Name="Modificado" Type="int" />
+          <Property Name="Provisoria" Type="int" />
+          <Property Name="LastReg" Type="datetime" />
+          <Property Name="DesdeCit" Type="nvarchar" MaxLength="14" />
+          <Property Name="HastaCit" Type="nvarchar" MaxLength="14" />
+          <Property Name="Autoriza" Type="nvarchar" MaxLength="50" />
+          <Property Name="ARTVence" Type="nvarchar" MaxLength="14" />
+          <Property Name="VistoPor" Type="int" />
+          <Property Name="Seteos1" Type="int" />
+          <Property Name="MultiValor" Type="int" />
+          <Property Name="Empresa" Type="int" />
+          <Property Name="DondeVer" Type="nvarchar" MaxLength="512" />
+          <Property Name="VenceTarje" Type="datetime" />
+          <Property Name="VenceProvi" Type="datetime" />
+          <Property Name="LastEntrada" Type="nvarchar" MaxLength="14" />
+          <Property Name="IdPerso" Type="int" />
+          <Property Name="OtroDoc" Type="nvarchar" MaxLength="32" />
+          <Property Name="TNDocumento" Type="nvarchar" MaxLength="32" />
+          <Property Name="Visitado" Type="int" />
+          <Property Name="OtraTarjeta" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ZANBE" Type="nvarchar" MaxLength="3" />
+          <Property Name="OtroDP1" Type="nvarchar" MaxLength="100" />
+          <Property Name="OtroDP2" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="NegocioEntitiesStoreContainer">
+          <EntitySet Name="FichadasAdicional" EntityType="Self.FichadasAdicional" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Controladores" EntityType="Self.Controladores" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Controladores].[Id] AS [Id], 
+    [Controladores].[Codigo] AS [Codigo], 
+    [Controladores].[Descripcion] AS [Descripcion], 
+    [Controladores].[Numero] AS [Numero], 
+    [Controladores].[UsoLec1] AS [UsoLec1], 
+    [Controladores].[UsoLec2] AS [UsoLec2], 
+    [Controladores].[Bloqueado] AS [Bloqueado], 
+    [Controladores].[Consola] AS [Consola], 
+    [Controladores].[Horario] AS [Horario], 
+    [Controladores].[Notas] AS [Notas], 
+    [Controladores].[Firmware] AS [Firmware], 
+    [Controladores].[Alta] AS [Alta], 
+    [Controladores].[TipoCard] AS [TipoCard], 
+    [Controladores].[FormatoCard] AS [FormatoCard], 
+    [Controladores].[Puerto] AS [Puerto], 
+    [Controladores].[IP_Speed] AS [IP_Speed], 
+    [Controladores].[MACAddr] AS [MACAddr], 
+    [Controladores].[Liberado] AS [Liberado], 
+    [Controladores].[Status] AS [Status], 
+    [Controladores].[RegistraProh] AS [RegistraProh], 
+    [Controladores].[EsReloj] AS [EsReloj], 
+    [Controladores].[VerFoto] AS [VerFoto], 
+    [Controladores].[APB] AS [APB], 
+    [Controladores].[IpProtocol] AS [IpProtocol], 
+    [Controladores].[T_Pumoba] AS [T_Pumoba], 
+    [Controladores].[T_SensPA] AS [T_SensPA], 
+    [Controladores].[UsoLec3] AS [UsoLec3], 
+    [Controladores].[UsoLec4] AS [UsoLec4], 
+    [Controladores].[PredVis] AS [PredVis], 
+    [Controladores].[MultiTablas] AS [MultiTablas], 
+    [Controladores].[QtyHabL] AS [QtyHabL], 
+    [Controladores].[QtyHabE] AS [QtyHabE], 
+    [Controladores].[nOpt1] AS [nOpt1], 
+    [Controladores].[nOpt2] AS [nOpt2], 
+    [Controladores].[nOpt3] AS [nOpt3], 
+    [Controladores].[TMEF] AS [TMEF], 
+    [Controladores].[CamaraWeb] AS [CamaraWeb], 
+    [Controladores].[EspCard] AS [EspCard], 
+    [Controladores].[TecFun] AS [TecFun], 
+    [Controladores].[HusoHorario] AS [HusoHorario], 
+    [Controladores].[IPPort] AS [IPPort], 
+    [Controladores].[Cacheo] AS [Cacheo], 
+    [Controladores].[Parking] AS [Parking], 
+    [Controladores].[Horario1] AS [Horario1], 
+    [Controladores].[Cliente] AS [Cliente], 
+    [Controladores].[TActuHabi] AS [TActuHabi], 
+    [Controladores].[MemLeida] AS [MemLeida], 
+    [Controladores].[ConnStatus] AS [ConnStatus], 
+    [Controladores].[TxtDisplay] AS [TxtDisplay], 
+    [Controladores].[Gateway] AS [Gateway], 
+    [Controladores].[MascaraIP] AS [MascaraIP], 
+    [Controladores].[DondeVer] AS [DondeVer], 
+    [Controladores].[Planta] AS [Planta], 
+    [Controladores].[HabiPtr] AS [HabiPtr], 
+    [Controladores].[UsoTablaH] AS [UsoTablaH], 
+    [Controladores].[FechaLastComm] AS [FechaLastComm], 
+    [Controladores].[THActivas] AS [THActivas]
+    FROM [dbo].[Controladores] AS [Controladores]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Fichadas" EntityType="Self.Fichadas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Fichadas].[Id] AS [Id], 
+    [Fichadas].[Controlador] AS [Controlador], 
+    [Fichadas].[Codigo] AS [Codigo], 
+    [Fichadas].[Accion] AS [Accion], 
+    [Fichadas].[Consola] AS [Consola], 
+    [Fichadas].[Tarjeta] AS [Tarjeta], 
+    [Fichadas].[Capturada] AS [Capturada], 
+    [Fichadas].[Fecha] AS [Fecha], 
+    [Fichadas].[Transferida] AS [Transferida], 
+    [Fichadas].[TReal] AS [TReal], 
+    [Fichadas].[Secuencia] AS [Secuencia], 
+    [Fichadas].[Observaciones] AS [Observaciones], 
+    [Fichadas].[IdPerso] AS [IdPerso]
+    FROM [dbo].[Fichadas] AS [Fichadas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Personas" EntityType="Self.Personas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Personas].[Id] AS [Id], 
+    [Personas].[Apellido] AS [Apellido], 
+    [Personas].[Nombre] AS [Nombre], 
+    [Personas].[FechaNacimiento] AS [FechaNacimiento], 
+    [Personas].[Cargo] AS [Cargo], 
+    [Personas].[Sector] AS [Sector], 
+    [Personas].[Seccion] AS [Seccion], 
+    [Personas].[CentroDeCosto] AS [CentroDeCosto], 
+    [Personas].[Division1] AS [Division1], 
+    [Personas].[Categoria] AS [Categoria], 
+    [Personas].[Notas] AS [Notas], 
+    [Personas].[Legajo] AS [Legajo], 
+    [Personas].[Tarjeta] AS [Tarjeta], 
+    [Personas].[Otros] AS [Otros], 
+    [Personas].[Alta] AS [Alta], 
+    [Personas].[Baja] AS [Baja], 
+    [Personas].[email] AS [email], 
+    [Personas].[Adentro] AS [Adentro], 
+    [Personas].[Nume2] AS [Nume2], 
+    [Personas].[Horario] AS [Horario], 
+    [Personas].[Telefono] AS [Telefono], 
+    [Personas].[Status] AS [Status], 
+    [Personas].[Sexo] AS [Sexo], 
+    [Personas].[Modificado] AS [Modificado], 
+    [Personas].[Provisoria] AS [Provisoria], 
+    [Personas].[LastReg] AS [LastReg], 
+    [Personas].[DesdeCit] AS [DesdeCit], 
+    [Personas].[HastaCit] AS [HastaCit], 
+    [Personas].[Autoriza] AS [Autoriza], 
+    [Personas].[ARTVence] AS [ARTVence], 
+    [Personas].[VistoPor] AS [VistoPor], 
+    [Personas].[Seteos1] AS [Seteos1], 
+    [Personas].[MultiValor] AS [MultiValor], 
+    [Personas].[Empresa] AS [Empresa], 
+    [Personas].[DondeVer] AS [DondeVer], 
+    [Personas].[VenceTarje] AS [VenceTarje], 
+    [Personas].[VenceProvi] AS [VenceProvi], 
+    [Personas].[LastEntrada] AS [LastEntrada], 
+    [Personas].[IdPerso] AS [IdPerso], 
+    [Personas].[OtroDoc] AS [OtroDoc], 
+    [Personas].[TNDocumento] AS [TNDocumento], 
+    [Personas].[Visitado] AS [Visitado], 
+    [Personas].[OtraTarjeta] AS [OtraTarjeta], 
+    [Personas].[ZANBE] AS [ZANBE], 
+    [Personas].[OtroDP1] AS [OtroDP1], 
+    [Personas].[OtroDP2] AS [OtroDP2]
+    FROM [dbo].[Personas] AS [Personas]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NegocioEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ModelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Fichadas" EntityType="NegocioEntities.Fichadas" />
+          <EntitySet Name="Personas" EntityType="NegocioEntities.Personas" />
+          <EntitySet Name="FichadasAdicional" EntityType="NegocioEntities.FichadasAdicional" />
+          <EntitySet Name="Controladores" EntityType="NegocioEntities.Controladores" />
+        </EntityContainer>
+        <EntityType Name="Fichadas">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Controlador" />
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Controlador" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Accion" Type="Int32" />
+          <Property Name="Consola" Type="Int32" />
+          <Property Name="Tarjeta" Type="Int32" />
+          <Property Name="Capturada" Type="DateTime" Precision="3" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Transferida" Type="Int32" />
+          <Property Name="TReal" Type="Int32" />
+          <Property Name="Secuencia" Type="Int32" />
+          <Property Name="Observaciones" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="IdPerso" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Personas">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Apellido" />
+            <PropertyRef Name="OtraTarjeta" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="Cargo" Type="Int32" />
+          <Property Name="Sector" Type="Int32" />
+          <Property Name="Seccion" Type="Int32" />
+          <Property Name="CentroDeCosto" Type="Int32" />
+          <Property Name="Division1" Type="Int32" />
+          <Property Name="Categoria" Type="Int32" />
+          <Property Name="Notas" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Legajo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tarjeta" Type="Int32" />
+          <Property Name="Otros" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Alta" Type="DateTime" Precision="3" />
+          <Property Name="Baja" Type="DateTime" Precision="3" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Adentro" Type="Int32" />
+          <Property Name="Nume2" Type="Int32" />
+          <Property Name="Horario" Type="Int32" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Sexo" Type="Int32" />
+          <Property Name="Modificado" Type="Int32" />
+          <Property Name="Provisoria" Type="Int32" />
+          <Property Name="LastReg" Type="DateTime" Precision="3" />
+          <Property Name="DesdeCit" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="HastaCit" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="Autoriza" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ARTVence" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="VistoPor" Type="Int32" />
+          <Property Name="Seteos1" Type="Int32" />
+          <Property Name="MultiValor" Type="Int32" />
+          <Property Name="Empresa" Type="Int32" />
+          <Property Name="DondeVer" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="VenceTarje" Type="DateTime" Precision="3" />
+          <Property Name="VenceProvi" Type="DateTime" Precision="3" />
+          <Property Name="LastEntrada" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="IdPerso" Type="Int32" />
+          <Property Name="OtroDoc" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="TNDocumento" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Visitado" Type="Int32" />
+          <Property Name="OtraTarjeta" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ZANBE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="OtroDP1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OtroDP2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FichadasAdicional">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="EstadoSincro" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Controladores">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Codigo" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="Numero" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="UsoLec1" Type="Int32" />
+          <Property Name="UsoLec2" Type="Int32" />
+          <Property Name="Bloqueado" Type="Int32" />
+          <Property Name="Consola" Type="Int32" />
+          <Property Name="Horario" Type="Int32" />
+          <Property Name="Notas" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Firmware" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Alta" Type="DateTime" Precision="3" />
+          <Property Name="TipoCard" Type="Int32" />
+          <Property Name="FormatoCard" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Puerto" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="IP_Speed" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MACAddr" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Liberado" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="RegistraProh" Type="Int32" />
+          <Property Name="EsReloj" Type="Int32" />
+          <Property Name="VerFoto" Type="Int32" />
+          <Property Name="APB" Type="Int32" />
+          <Property Name="IpProtocol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="T_Pumoba" Type="Int32" />
+          <Property Name="T_SensPA" Type="Int32" />
+          <Property Name="UsoLec3" Type="Int32" />
+          <Property Name="UsoLec4" Type="Int32" />
+          <Property Name="PredVis" Type="Int32" />
+          <Property Name="MultiTablas" Type="Int32" />
+          <Property Name="QtyHabL" Type="Int32" />
+          <Property Name="QtyHabE" Type="Int32" />
+          <Property Name="nOpt1" Type="Int32" />
+          <Property Name="nOpt2" Type="Int32" />
+          <Property Name="nOpt3" Type="Int32" />
+          <Property Name="TMEF" Type="Int32" />
+          <Property Name="CamaraWeb" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EspCard" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="TecFun" Type="Int32" />
+          <Property Name="HusoHorario" Type="Int32" />
+          <Property Name="IPPort" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Cacheo" Type="Int32" />
+          <Property Name="Parking" Type="Int32" />
+          <Property Name="Horario1" Type="Int32" />
+          <Property Name="Cliente" Type="Int32" />
+          <Property Name="TActuHabi" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="MemLeida" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ConnStatus" Type="Int32" />
+          <Property Name="TxtDisplay" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Gateway" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="MascaraIP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DondeVer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Planta" Type="Int32" />
+          <Property Name="HabiPtr" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="UsoTablaH" Type="Int32" />
+          <Property Name="FechaLastComm" Type="DateTime" Precision="3" />
+          <Property Name="THActivas" Type="Int32" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NegocioEntitiesStoreContainer" CdmEntityContainer="ModelEntities">
+          <EntitySetMapping Name="Fichadas">
+            <EntityTypeMapping TypeName="NegocioEntities.Fichadas">
+              <MappingFragment StoreEntitySet="Fichadas">
+                <ScalarProperty Name="IdPerso" ColumnName="IdPerso" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Secuencia" ColumnName="Secuencia" />
+                <ScalarProperty Name="TReal" ColumnName="TReal" />
+                <ScalarProperty Name="Transferida" ColumnName="Transferida" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Capturada" ColumnName="Capturada" />
+                <ScalarProperty Name="Tarjeta" ColumnName="Tarjeta" />
+                <ScalarProperty Name="Consola" ColumnName="Consola" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="NegocioEntities.Personas">
+              <MappingFragment StoreEntitySet="Personas">
+                <ScalarProperty Name="OtroDP2" ColumnName="OtroDP2" />
+                <ScalarProperty Name="OtroDP1" ColumnName="OtroDP1" />
+                <ScalarProperty Name="ZANBE" ColumnName="ZANBE" />
+                <ScalarProperty Name="OtraTarjeta" ColumnName="OtraTarjeta" />
+                <ScalarProperty Name="Visitado" ColumnName="Visitado" />
+                <ScalarProperty Name="TNDocumento" ColumnName="TNDocumento" />
+                <ScalarProperty Name="OtroDoc" ColumnName="OtroDoc" />
+                <ScalarProperty Name="IdPerso" ColumnName="IdPerso" />
+                <ScalarProperty Name="LastEntrada" ColumnName="LastEntrada" />
+                <ScalarProperty Name="VenceProvi" ColumnName="VenceProvi" />
+                <ScalarProperty Name="VenceTarje" ColumnName="VenceTarje" />
+                <ScalarProperty Name="DondeVer" ColumnName="DondeVer" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="MultiValor" ColumnName="MultiValor" />
+                <ScalarProperty Name="Seteos1" ColumnName="Seteos1" />
+                <ScalarProperty Name="VistoPor" ColumnName="VistoPor" />
+                <ScalarProperty Name="ARTVence" ColumnName="ARTVence" />
+                <ScalarProperty Name="Autoriza" ColumnName="Autoriza" />
+                <ScalarProperty Name="HastaCit" ColumnName="HastaCit" />
+                <ScalarProperty Name="DesdeCit" ColumnName="DesdeCit" />
+                <ScalarProperty Name="LastReg" ColumnName="LastReg" />
+                <ScalarProperty Name="Provisoria" ColumnName="Provisoria" />
+                <ScalarProperty Name="Modificado" ColumnName="Modificado" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="Nume2" ColumnName="Nume2" />
+                <ScalarProperty Name="Adentro" ColumnName="Adentro" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Baja" ColumnName="Baja" />
+                <ScalarProperty Name="Alta" ColumnName="Alta" />
+                <ScalarProperty Name="Otros" ColumnName="Otros" />
+                <ScalarProperty Name="Tarjeta" ColumnName="Tarjeta" />
+                <ScalarProperty Name="Legajo" ColumnName="Legajo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Division1" ColumnName="Division1" />
+                <ScalarProperty Name="CentroDeCosto" ColumnName="CentroDeCosto" />
+                <ScalarProperty Name="Seccion" ColumnName="Seccion" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FichadasAdicional">
+            <EntityTypeMapping TypeName="NegocioEntities.FichadasAdicional">
+              <MappingFragment StoreEntitySet="FichadasAdicional">
+                <ScalarProperty Name="EstadoSincro" ColumnName="EstadoSincro" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Controladores">
+            <EntityTypeMapping TypeName="NegocioEntities.Controladores">
+              <MappingFragment StoreEntitySet="Controladores">
+                <ScalarProperty Name="THActivas" ColumnName="THActivas" />
+                <ScalarProperty Name="FechaLastComm" ColumnName="FechaLastComm" />
+                <ScalarProperty Name="UsoTablaH" ColumnName="UsoTablaH" />
+                <ScalarProperty Name="HabiPtr" ColumnName="HabiPtr" />
+                <ScalarProperty Name="Planta" ColumnName="Planta" />
+                <ScalarProperty Name="DondeVer" ColumnName="DondeVer" />
+                <ScalarProperty Name="MascaraIP" ColumnName="MascaraIP" />
+                <ScalarProperty Name="Gateway" ColumnName="Gateway" />
+                <ScalarProperty Name="TxtDisplay" ColumnName="TxtDisplay" />
+                <ScalarProperty Name="ConnStatus" ColumnName="ConnStatus" />
+                <ScalarProperty Name="MemLeida" ColumnName="MemLeida" />
+                <ScalarProperty Name="TActuHabi" ColumnName="TActuHabi" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Horario1" ColumnName="Horario1" />
+                <ScalarProperty Name="Parking" ColumnName="Parking" />
+                <ScalarProperty Name="Cacheo" ColumnName="Cacheo" />
+                <ScalarProperty Name="IPPort" ColumnName="IPPort" />
+                <ScalarProperty Name="HusoHorario" ColumnName="HusoHorario" />
+                <ScalarProperty Name="TecFun" ColumnName="TecFun" />
+                <ScalarProperty Name="EspCard" ColumnName="EspCard" />
+                <ScalarProperty Name="CamaraWeb" ColumnName="CamaraWeb" />
+                <ScalarProperty Name="TMEF" ColumnName="TMEF" />
+                <ScalarProperty Name="nOpt3" ColumnName="nOpt3" />
+                <ScalarProperty Name="nOpt2" ColumnName="nOpt2" />
+                <ScalarProperty Name="nOpt1" ColumnName="nOpt1" />
+                <ScalarProperty Name="QtyHabE" ColumnName="QtyHabE" />
+                <ScalarProperty Name="QtyHabL" ColumnName="QtyHabL" />
+                <ScalarProperty Name="MultiTablas" ColumnName="MultiTablas" />
+                <ScalarProperty Name="PredVis" ColumnName="PredVis" />
+                <ScalarProperty Name="UsoLec4" ColumnName="UsoLec4" />
+                <ScalarProperty Name="UsoLec3" ColumnName="UsoLec3" />
+                <ScalarProperty Name="T_SensPA" ColumnName="T_SensPA" />
+                <ScalarProperty Name="T_Pumoba" ColumnName="T_Pumoba" />
+                <ScalarProperty Name="IpProtocol" ColumnName="IpProtocol" />
+                <ScalarProperty Name="APB" ColumnName="APB" />
+                <ScalarProperty Name="VerFoto" ColumnName="VerFoto" />
+                <ScalarProperty Name="EsReloj" ColumnName="EsReloj" />
+                <ScalarProperty Name="RegistraProh" ColumnName="RegistraProh" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Liberado" ColumnName="Liberado" />
+                <ScalarProperty Name="MACAddr" ColumnName="MACAddr" />
+                <ScalarProperty Name="IP_Speed" ColumnName="IP_Speed" />
+                <ScalarProperty Name="Puerto" ColumnName="Puerto" />
+                <ScalarProperty Name="FormatoCard" ColumnName="FormatoCard" />
+                <ScalarProperty Name="TipoCard" ColumnName="TipoCard" />
+                <ScalarProperty Name="Alta" ColumnName="Alta" />
+                <ScalarProperty Name="Firmware" ColumnName="Firmware" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="Consola" ColumnName="Consola" />
+                <ScalarProperty Name="Bloqueado" ColumnName="Bloqueado" />
+                <ScalarProperty Name="UsoLec2" ColumnName="UsoLec2" />
+                <ScalarProperty Name="UsoLec1" ColumnName="UsoLec1" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

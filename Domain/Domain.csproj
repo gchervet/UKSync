@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{89204890-86AD-425A-9101-28432D30753A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Domain</RootNamespace>
+    <AssemblyName>Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\hznCodeAnalysis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\lib\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\lib\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="1.Generic\Auditing\OperationAuditingModel.cs" />
+    <Compile Include="1.Generic\Attributes\Checksum.cs" />
+    <Compile Include="2.Security\CtaAplicacionDeConsumos.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\CtaCierresDePeriodos.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\CtaMovimientos.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\CtaMovimientosAplicacion.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\CtaMovimientosCuotas.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\CtaMovimientosFinancieras.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\DTO\UniProfesores\UniProfesorInstitutoDto.cs" />
+    <Compile Include="2.Security\Enums\EnumManager.cs" />
+    <Compile Include="2.Security\Enums\EstadoAvisoEnum.cs" />
+    <Compile Include="2.Security\Enums\TipoNovedadesEnum.cs" />
+    <Compile Include="2.Security\Enums\TarjetaEnum.cs" />
+    <Compile Include="2.Security\Enums\EstadoSincroEnum.cs" />
+    <Compile Include="2.Security\DTO\UniProfesores\UniProfesoresDto.cs" />
+    <Compile Include="1.Generic\ParameterTypes.cs" />
+    <Compile Include="2.Security\SecurityEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\SecurityEnums.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityEnums.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1.Generic\UnauthorizedOperationException.cs" />
+    <Compile Include="1.Generic\ChecksumException.cs" />
+    <Compile Include="2.Security\DTO\NgValidateResponse.cs" />
+    <Compile Include="2.Security\DTO\PagedList.cs" />
+    <Compile Include="1.Generic\Attributes\Encrypted.cs" />
+    <Compile Include="2.Security\Enums\HttpConflictReason.cs" />
+    <Compile Include="2.Security\Enums\HttpUnauthorizedReason.cs" />
+    <Compile Include="1.Generic\Extension\HttpActionContextExtensions.cs" />
+    <Compile Include="1.Generic\Extension\StringExtension.cs" />
+    <Compile Include="2.Security\SN_Controlador_Edificio.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\SN_Fichadas.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\sp_get_ProfesoresHs_Result.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\UKSync_GetByFechaCodinsLegajo_Result.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniActas.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniActasAlumnos.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniAlumnos.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\UniAniosLectivosFacturados.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\UniAranceles.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniCorreoEnviado.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\UniCorreoxEdificio.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\UniCtaCteEstado.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniCuatrimestres.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniCursos.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniCursosDias.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniInscripcionesMaterias.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniInscripcionesMateriasDetalle.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniMatriculaciones.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\UniProfesoresHs.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniReconocimientoMaterias.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniReconocimientoMateriasDetalle.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="2.Security\uniReconocimientoMateriasFirmantes.cs">
+      <DependentUpon>SecurityEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="3.Negocio\Controladores.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="3.Negocio\Fichadas.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="3.Negocio\FichadasAdicional.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="3.Negocio\ModelEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="3.Negocio\Personas.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="2.Security\SecurityEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SecurityEntities.cs</LastGenOutput>
+      <CustomToolNamespace>Domain.Security</CustomToolNamespace>
+    </None>
+    <None Include="3.Negocio\ModelEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelEntities.cs</LastGenOutput>
+      <CustomToolNamespace>Domain.Negocio</CustomToolNamespace>
+    </None>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="2.Security\SecurityEnums.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SecurityEnums.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="2.Security\ModelPartial\" />
+    <Folder Include="3.Negocio\DTO\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\StyleCop.MSBuild.4.7.49.1\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.49.1\build\StyleCop.MSBuild.Targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

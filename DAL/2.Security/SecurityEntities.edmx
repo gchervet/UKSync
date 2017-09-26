@@ -1,0 +1,1846 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CtaAplicacionDeConsumos">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovimientoItemClave" Type="bigint" Nullable="false" />
+          <Property Name="ConsumoTipoId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdentificadorConsumo1" Type="varchar" MaxLength="50" />
+          <Property Name="IdentificadorConsumo2" Type="varchar" MaxLength="50" />
+          <Property Name="MovimientoItemClaveReferencia" Type="bigint" />
+          <Property Name="UnidadMedidaId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Cantidad" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="Version" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CtaCierresDePeriodos">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaDesde" Type="datetime" Nullable="false" />
+          <Property Name="FechaHasta" Type="datetime" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="Version" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CtaMovimientos">
+          <Key>
+            <PropertyRef Name="MovimientoNro" />
+          </Key>
+          <Property Name="MovimientoNro" Type="bigint" Nullable="false" />
+          <Property Name="MovimientoTipoId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ComprobanteId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SignoComprobante" Type="int" Nullable="false" />
+          <Property Name="CondicionDePagoId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SucursalId" Type="int" Nullable="false" />
+          <Property Name="EstablecimientoId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ComprobanteNro" Type="int" Nullable="false" />
+          <Property Name="FechaMovimiento" Type="datetime" Nullable="false" />
+          <Property Name="FechaComprobante" Type="datetime" Nullable="false" />
+          <Property Name="FechaVencimientoBaseInformada" Type="datetime" />
+          <Property Name="EntidadId" Type="int" />
+          <Property Name="EntidadDescripcion" Type="varchar" MaxLength="200" />
+          <Property Name="EntidadGrupoId" Type="varchar" MaxLength="10" />
+          <Property Name="GaranteId" Type="int" />
+          <Property Name="PatrocinadorId" Type="int" />
+          <Property Name="CuentaContableTipoId" Type="varchar" MaxLength="10" />
+          <Property Name="ListaPrecioId" Type="varchar" MaxLength="10" />
+          <Property Name="DivisaId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Importe" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Comentario" Type="varchar" MaxLength="1000" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="Version" Type="int" Nullable="false" />
+          <Property Name="Anulado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CtaMovimientosAplicacion">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovimientoNro" Type="bigint" Nullable="false" />
+          <Property Name="Orden" Type="int" Nullable="false" />
+          <Property Name="MovimientoCuotaClaveAplicado" Type="bigint" Nullable="false" />
+          <Property Name="MovimientoCuotaClaveAplicando" Type="bigint" Nullable="false" />
+          <Property Name="DivisaId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Importe" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="Version" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CtaMovimientosCuotas">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovimientoNro" Type="bigint" Nullable="false" />
+          <Property Name="Cuota" Type="int" Nullable="false" />
+          <Property Name="Vencimiento" Type="datetime" Nullable="false" />
+          <Property Name="DivisaId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Importe" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="CuentaCorrienteTipo" Type="varchar" MaxLength="10" />
+          <Property Name="origen" Type="int" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="Version" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CtaMovimientosFinancieras">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovimientoNro" Type="bigint" Nullable="false" />
+          <Property Name="Orden" Type="int" Nullable="false" />
+          <Property Name="EntradaSalida" Type="int" Nullable="false" />
+          <Property Name="FinancieraPropiaId" Type="varchar" MaxLength="10" />
+          <Property Name="ComprobanteId" Type="varchar" MaxLength="10" />
+          <Property Name="ComprobanteNro" Type="varchar" MaxLength="50" />
+          <Property Name="CuentaContable" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CentroDeCosto" Type="varchar" MaxLength="50" />
+          <Property Name="DivisaId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Importe" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="Version" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SN_Controlador_Edificio">
+          <Key>
+            <PropertyRef Name="IdControlador" />
+          </Key>
+          <Property Name="IdControlador" Type="int" Nullable="false" />
+          <Property Name="CodIns" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SN_Fichadas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Controlador" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Accion" Type="int" />
+          <Property Name="Consola" Type="int" />
+          <Property Name="Tarjeta" Type="int" />
+          <Property Name="Capturada" Type="datetime" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Transferida" Type="int" />
+          <Property Name="TReal" Type="int" />
+          <Property Name="Secuencia" Type="int" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="32" />
+          <Property Name="IdPerso" Type="int" />
+          <Property Name="legajo" Type="int" Nullable="false" />
+          <Property Name="Planta" Type="int" Nullable="false" />
+          <Property Name="EstadoSincro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uniActas">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="bigint" Nullable="false" />
+          <Property Name="numeroActa" Type="int" Nullable="false" />
+          <Property Name="numeroActaDefinitivo" Type="int" Nullable="false" />
+          <Property Name="papel1" Type="bigint" Nullable="false" />
+          <Property Name="papel2" Type="bigint" Nullable="false" />
+          <Property Name="ciclo" Type="int" />
+          <Property Name="turno" Type="varchar" MaxLength="1" />
+          <Property Name="codmat" Type="varchar" MaxLength="6" />
+          <Property Name="libro" Type="varchar" MaxLength="6" />
+          <Property Name="folio" Type="int" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="hora" Type="datetime" />
+          <Property Name="codins" Type="varchar" MaxLength="2" />
+          <Property Name="usrnom" Type="varchar" MaxLength="50" />
+          <Property Name="ftrn" Type="datetime" />
+          <Property Name="regional" Type="int" />
+          <Property Name="estadoActa" Type="int" Nullable="false" />
+          <Property Name="Fila" Type="int" />
+          <Property Name="MesaId" Type="bigint" />
+          <Property Name="codigoComprobacion" Type="text" />
+        </EntityType>
+        <EntityType Name="uniActasAlumnos">
+          <Key>
+            <PropertyRef Name="Clave" />
+            <PropertyRef Name="legajo" />
+          </Key>
+          <Property Name="Clave" Type="bigint" Nullable="false" />
+          <Property Name="legajo" Type="int" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" />
+          <Property Name="ausente" Type="int" />
+          <Property Name="cond" Type="varchar" MaxLength="1" />
+          <Property Name="notaesc" Type="int" />
+          <Property Name="notaora" Type="int" />
+          <Property Name="notadef" Type="int" />
+          <Property Name="orden" Type="int" Nullable="false" />
+          <Property Name="Fila" Type="int" />
+          <Property Name="codigoComprobacion" Type="text" />
+        </EntityType>
+        <EntityType Name="uniAlumnos">
+          <Key>
+            <PropertyRef Name="legprovi" />
+          </Key>
+          <Property Name="legprovi" Type="int" Nullable="false" />
+          <Property Name="legdef" Type="int" />
+          <Property Name="apellido" Type="varchar" MaxLength="30" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" />
+          <Property Name="fecnac" Type="datetime" />
+          <Property Name="lugar" Type="varchar" MaxLength="25" />
+          <Property Name="docnac" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="cedide" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="libciv" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="libenr" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="sexo" Type="varchar" MaxLength="1" />
+          <Property Name="argext" Type="varchar" MaxLength="1" />
+          <Property Name="nacion" Type="varchar" MaxLength="25" />
+          <Property Name="nropas" Type="varchar" MaxLength="50" />
+          <Property Name="tramite" Type="varchar" MaxLength="1" />
+          <Property Name="carrera" Type="varchar" MaxLength="4" />
+          <Property Name="regional" Type="int" />
+          <Property Name="turno" Type="varchar" MaxLength="1" />
+          <Property Name="finscrip" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="70" />
+          <Property Name="username" Type="varchar" MaxLength="70" />
+          <Property Name="regional_cursa" Type="int" />
+          <Property Name="version2" Type="int" />
+          <Property Name="documentoExtranjero" Type="varchar" MaxLength="50" />
+          <Property Name="PaisDocumento" Type="varchar" MaxLength="150" />
+          <Property Name="Origen" Type="int" />
+          <Property Name="IdEntidad" Type="int" />
+          <Property Name="CicloIngreso" Type="int" />
+          <Property Name="CuatriIngreso" Type="int" />
+          <Property Name="Modalidad" Type="varchar" MaxLength="10" />
+          <Property Name="IdCanal" Type="int" />
+          <Property Name="CanalDescripcion" Type="varchar" MaxLength="100" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UniAniosLectivosFacturados">
+          <Key>
+            <PropertyRef Name="legajo" />
+            <PropertyRef Name="añoLectivoFacturado" />
+          </Key>
+          <Property Name="legajo" Type="int" Nullable="false" />
+          <Property Name="añoLectivoFacturado" Type="int" Nullable="false" />
+          <Property Name="derechosExamenIncluidos" Type="bit" />
+          <Property Name="PorAnioDeCorte" Type="bit" />
+        </EntityType>
+        <EntityType Name="UniAranceles">
+          <Key>
+            <PropertyRef Name="clave" />
+            <PropertyRef Name="aniolectivo" />
+          </Key>
+          <Property Name="clave" Type="bigint" Nullable="false" />
+          <Property Name="aniolectivo" Type="int" Nullable="false" />
+          <Property Name="tipoArancel" Type="int" Nullable="false" />
+          <Property Name="condicionDePago" Type="varchar" MaxLength="10" />
+          <Property Name="mensajeArancel" Type="text" />
+          <Property Name="usrnom" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ftrn" Type="datetime" Nullable="false" />
+          <Property Name="fila" Type="int" Nullable="false" />
+          <Property Name="tipoOrigen" Type="int" />
+          <Property Name="claveOrigen" Type="bigint" />
+        </EntityType>
+        <EntityType Name="uniCorreoEnviado">
+          <Key>
+            <PropertyRef Name="codins" />
+            <PropertyRef Name="legajoProfesor" />
+            <PropertyRef Name="cursoid" />
+          </Key>
+          <Property Name="codins" Type="int" Nullable="false" />
+          <Property Name="legajoProfesor" Type="int" Nullable="false" />
+          <Property Name="cursoid" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FechaDeEnvio" Type="datetime" />
+          <Property Name="Emisor" Type="varchar" MaxLength="255" />
+          <Property Name="Receptor" Type="varchar" MaxLength="255" />
+          <Property Name="EstadoAviso" Type="int" />
+        </EntityType>
+        <EntityType Name="UniCorreoxEdificio">
+          <Key>
+            <PropertyRef Name="codins" />
+            <PropertyRef Name="Correo" />
+          </Key>
+          <Property Name="codins" Type="int" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CorreoCopia" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UniCtaCteEstado">
+          <Key>
+            <PropertyRef Name="legajo" />
+          </Key>
+          <Property Name="legajo" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="Permisos" Type="int" Nullable="false" />
+          <Property Name="Deuda" Type="decimal" Precision="20" Scale="10" />
+          <Property Name="InscrcripcionAFavor" Type="decimal" Precision="20" Scale="10" />
+          <Property Name="InsmatAnio" Type="int" />
+          <Property Name="DeudaSuspension" Type="decimal" Precision="20" Scale="10" />
+          <Property Name="DeudaBaja" Type="decimal" Precision="20" Scale="10" />
+          <Property Name="Origen" Type="int" />
+        </EntityType>
+        <EntityType Name="uniCuatrimestres">
+          <Key>
+            <PropertyRef Name="cuatri" />
+          </Key>
+          <Property Name="cuatri" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="MesInicio" Type="int" />
+          <Property Name="MesFin" Type="int" />
+        </EntityType>
+        <EntityType Name="uniCursos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="codcar" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="codcur" Type="int" Nullable="false" />
+          <Property Name="codmat" Type="varchar" MaxLength="6" />
+          <Property Name="ano" Type="int" Nullable="false" />
+          <Property Name="cuatri" Type="int" Nullable="false" />
+          <Property Name="turno" Type="varchar" MaxLength="1" />
+          <Property Name="letrad" Type="varchar" MaxLength="1" />
+          <Property Name="letrah" Type="varchar" MaxLength="1" />
+          <Property Name="comision" Type="varchar" MaxLength="1" />
+          <Property Name="cupo" Type="int" />
+          <Property Name="anotados" Type="int" />
+          <Property Name="anomat" Type="int" />
+          <Property Name="codcur2" Type="varchar" MaxLength="8" />
+          <Property Name="usrnom" Type="varchar" MaxLength="50" />
+          <Property Name="ftrn" Type="datetime" />
+          <Property Name="promo" Type="int" />
+          <Property Name="qclases" Type="int" />
+          <Property Name="qparcial" Type="int" />
+          <Property Name="qtopepro" Type="float" />
+          <Property Name="qtopereg" Type="float" />
+          <Property Name="regional" Type="int" />
+          <Property Name="cantprof" Type="float" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cupoMinimo" Type="int" />
+          <Property Name="Fila" Type="int" Nullable="false" />
+          <Property Name="modalidad" Type="int" />
+        </EntityType>
+        <EntityType Name="uniCursosDias">
+          <Key>
+            <PropertyRef Name="cursoId" />
+            <PropertyRef Name="ActividadNro" />
+            <PropertyRef Name="dia" />
+          </Key>
+          <Property Name="cursoId" Type="bigint" Nullable="false" />
+          <Property Name="ActividadNro" Type="int" Nullable="false" />
+          <Property Name="dia" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="ActividadTipoId" Type="int" />
+          <Property Name="desde" Type="datetime" />
+          <Property Name="hasta" Type="datetime" />
+          <Property Name="codins" Type="int" />
+          <Property Name="codaul" Type="int" />
+          <Property Name="usrnom" Type="varchar" MaxLength="12" />
+          <Property Name="ftrn" Type="datetime" />
+          <Property Name="Version" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uniInscripcionesMaterias">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="bigint" Nullable="false" />
+          <Property Name="legajo" Type="int" />
+          <Property Name="finsc" Type="datetime" />
+          <Property Name="ciclo" Type="int" />
+          <Property Name="cuatri" Type="int" />
+          <Property Name="codcar" Type="varchar" MaxLength="4" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="FechaModificacion" Type="datetime" />
+          <Property Name="Fila" Type="bigint" Nullable="false" />
+          <Property Name="Eliminada" Type="bit" />
+        </EntityType>
+        <EntityType Name="uniInscripcionesMateriasDetalle">
+          <Key>
+            <PropertyRef Name="Clave" />
+            <PropertyRef Name="codmat" />
+          </Key>
+          <Property Name="Clave" Type="bigint" Nullable="false" />
+          <Property Name="codmat" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="codcur" Type="int" />
+          <Property Name="Fila" Type="bigint" Nullable="false" />
+          <Property Name="cursoId" Type="bigint" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="uniMatriculaciones">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="bigint" Nullable="false" />
+          <Property Name="legajoProvisorio" Type="int" Nullable="false" />
+          <Property Name="ciclo" Type="int" Nullable="false" />
+          <Property Name="tipoMatriculacion" Type="int" Nullable="false" />
+          <Property Name="condicionDePago" Type="varchar" MaxLength="10" />
+          <Property Name="Eliminada" Type="bit" Nullable="false" />
+          <Property Name="mensajeMatri" Type="text" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Fila" Type="int" Nullable="false" />
+          <Property Name="claveOrigen" Type="bigint" />
+          <Property Name="anioMaximo" Type="int" />
+          <Property Name="fechaModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UniProfesoresHs">
+          <Key>
+            <PropertyRef Name="CursoId" />
+            <PropertyRef Name="ClaseNro" />
+            <PropertyRef Name="LegajoProfesor" />
+          </Key>
+          <Property Name="CursoId" Type="bigint" Nullable="false" />
+          <Property Name="ClaseNro" Type="int" Nullable="false" />
+          <Property Name="LegajoProfesor" Type="int" Nullable="false" />
+          <Property Name="Entrada" Type="datetime" />
+          <Property Name="Salida" Type="datetime" />
+          <Property Name="Ausente" Type="bit" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Revision" Type="bit" Nullable="false" />
+          <Property Name="FechaCursada" Type="datetime" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="Version" Type="int" Nullable="false" />
+          <Property Name="NoPlanificado" Type="bit" Nullable="false" />
+          <Property Name="LegajoProfesorReemplazo" Type="int" />
+          <Property Name="HsPlanificadas" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HsEfectivas" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Comentarios" Type="varchar(max)" />
+          <Property Name="EntradaEditada" Type="datetime" />
+          <Property Name="SalidaEditada" Type="datetime" />
+          <Property Name="NovedadesId" Type="int" />
+          <Property Name="Estado" Type="int" />
+          <Property Name="HorasAprobadas" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="uniReconocimientoMaterias">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="int" Nullable="false" />
+          <Property Name="numeroTramite" Type="int" />
+          <Property Name="legajo" Type="int" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="numeroResolucion" Type="int" />
+          <Property Name="fechaResolucion" Type="datetime" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="fechaVencimiento" Type="datetime" Nullable="false" />
+          <Property Name="tipoDocumento" Type="int" />
+          <Property Name="nroDocumento" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Contacto" Type="varchar" MaxLength="100" />
+          <Property Name="Fila" Type="int" Nullable="false" />
+          <Property Name="carrera" Type="varchar" MaxLength="100" />
+          <Property Name="CodigoComprobacion" Type="nvarchar" MaxLength="200" />
+          <Property Name="papel1" Type="bigint" Nullable="false" />
+          <Property Name="papel2" Type="bigint" Nullable="false" />
+          <Property Name="baja" Type="bit" />
+          <Property Name="Tipo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uniReconocimientoMateriasDetalle">
+          <Key>
+            <PropertyRef Name="idReconocimientoMaterias" />
+            <PropertyRef Name="codmat" />
+          </Key>
+          <Property Name="idReconocimientoMaterias" Type="int" Nullable="false" />
+          <Property Name="codmat" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Comentarios" Type="text" />
+          <Property Name="Fila" Type="int" Nullable="false" />
+          <Property Name="CodigoComprobacion" Type="text" />
+          <Property Name="CodmatOptativa" Type="varchar" MaxLength="6" />
+        </EntityType>
+        <EntityType Name="uniReconocimientoMateriasFirmantes">
+          <Key>
+            <PropertyRef Name="idReconocimientoMaterias" />
+            <PropertyRef Name="legajo" />
+          </Key>
+          <Property Name="idReconocimientoMaterias" Type="int" Nullable="false" />
+          <Property Name="legajo" Type="int" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="Fila" Type="int" Nullable="false" />
+          <Property Name="CodigoComprobacion" Type="text" />
+        </EntityType>
+        <Association Name="FK_CtaMovimientosAplicacion_CtaMovimientos">
+          <End Role="CtaMovimientos" Type="Self.CtaMovimientos" Multiplicity="1" />
+          <End Role="CtaMovimientosAplicacion" Type="Self.CtaMovimientosAplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CtaMovimientos">
+              <PropertyRef Name="MovimientoNro" />
+            </Principal>
+            <Dependent Role="CtaMovimientosAplicacion">
+              <PropertyRef Name="MovimientoNro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CtaMovimientosAplicacion_CtaMovimientosCuotas">
+          <End Role="CtaMovimientosCuotas" Type="Self.CtaMovimientosCuotas" Multiplicity="1" />
+          <End Role="CtaMovimientosAplicacion" Type="Self.CtaMovimientosAplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CtaMovimientosCuotas">
+              <PropertyRef Name="Clave" />
+            </Principal>
+            <Dependent Role="CtaMovimientosAplicacion">
+              <PropertyRef Name="MovimientoCuotaClaveAplicado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CtaMovimientosAplicacion_CtaMovimientosCuotas1">
+          <End Role="CtaMovimientosCuotas" Type="Self.CtaMovimientosCuotas" Multiplicity="1" />
+          <End Role="CtaMovimientosAplicacion" Type="Self.CtaMovimientosAplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CtaMovimientosCuotas">
+              <PropertyRef Name="Clave" />
+            </Principal>
+            <Dependent Role="CtaMovimientosAplicacion">
+              <PropertyRef Name="MovimientoCuotaClaveAplicando" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CtaMovimientosCuotas_CtaMovimientos">
+          <End Role="CtaMovimientos" Type="Self.CtaMovimientos" Multiplicity="1" />
+          <End Role="CtaMovimientosCuotas" Type="Self.CtaMovimientosCuotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CtaMovimientos">
+              <PropertyRef Name="MovimientoNro" />
+            </Principal>
+            <Dependent Role="CtaMovimientosCuotas">
+              <PropertyRef Name="MovimientoNro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CtaMovimientosFinancieras_CtaMovimientos">
+          <End Role="CtaMovimientos" Type="Self.CtaMovimientos" Multiplicity="1" />
+          <End Role="CtaMovimientosFinancieras" Type="Self.CtaMovimientosFinancieras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CtaMovimientos">
+              <PropertyRef Name="MovimientoNro" />
+            </Principal>
+            <Dependent Role="CtaMovimientosFinancieras">
+              <PropertyRef Name="MovimientoNro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_anotados_cursoId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="cursoId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_CierraReconocimientos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idReconocimiento" Type="int" Mode="In" />
+          <Parameter Name="legajoprov" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_cta_Anular_Movimiento_Return_Afectadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MovimientoNro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_cta_Anular_MovimientoAPL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MovimientoNro" Type="int" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_get_ProfesoresHs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codins" Type="int" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="turno" Type="char" Mode="In" />
+          <Parameter Name="desde" Type="datetime" Mode="In" />
+          <Parameter Name="hasta" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_ins_uniMoodle_matric_agrup_usuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ciclo" Type="int" Mode="In" />
+          <Parameter Name="cuatri" Type="int" Mode="In" />
+          <Parameter Name="matricProfesores" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_sav_examen_a_verificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="legajo" Type="int" Mode="In" />
+          <Parameter Name="codmat" Type="varchar" Mode="In" />
+          <Parameter Name="acta" Type="int" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="folio" Type="int" Mode="In" />
+          <Parameter Name="libro" Type="varchar" Mode="In" />
+          <Parameter Name="notadef" Type="int" Mode="In" />
+          <Parameter Name="ausente" Type="int" Mode="In" />
+          <Parameter Name="notaesc" Type="int" Mode="In" />
+          <Parameter Name="notaora" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="DomainStoreContainer">
+          <EntitySet Name="CtaAplicacionDeConsumos" EntityType="Self.CtaAplicacionDeConsumos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CtaCierresDePeriodos" EntityType="Self.CtaCierresDePeriodos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CtaMovimientos" EntityType="Self.CtaMovimientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CtaMovimientosAplicacion" EntityType="Self.CtaMovimientosAplicacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CtaMovimientosCuotas" EntityType="Self.CtaMovimientosCuotas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CtaMovimientosFinancieras" EntityType="Self.CtaMovimientosFinancieras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SN_Controlador_Edificio" EntityType="Self.SN_Controlador_Edificio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SN_Fichadas" EntityType="Self.SN_Fichadas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniActas" EntityType="Self.uniActas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniActasAlumnos" EntityType="Self.uniActasAlumnos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniAlumnos" EntityType="Self.uniAlumnos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UniAniosLectivosFacturados" EntityType="Self.UniAniosLectivosFacturados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UniAranceles" EntityType="Self.UniAranceles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniCorreoEnviado" EntityType="Self.uniCorreoEnviado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UniCorreoxEdificio" EntityType="Self.UniCorreoxEdificio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UniCtaCteEstado" EntityType="Self.UniCtaCteEstado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniCuatrimestres" EntityType="Self.uniCuatrimestres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniCursos" EntityType="Self.uniCursos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniCursosDias" EntityType="Self.uniCursosDias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniInscripcionesMaterias" EntityType="Self.uniInscripcionesMaterias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniInscripcionesMateriasDetalle" EntityType="Self.uniInscripcionesMateriasDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniMatriculaciones" EntityType="Self.uniMatriculaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UniProfesoresHs" EntityType="Self.UniProfesoresHs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniReconocimientoMaterias" EntityType="Self.uniReconocimientoMaterias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniReconocimientoMateriasDetalle" EntityType="Self.uniReconocimientoMateriasDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uniReconocimientoMateriasFirmantes" EntityType="Self.uniReconocimientoMateriasFirmantes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CtaMovimientosAplicacion_CtaMovimientos" Association="Self.FK_CtaMovimientosAplicacion_CtaMovimientos">
+            <End Role="CtaMovimientos" EntitySet="CtaMovimientos" />
+            <End Role="CtaMovimientosAplicacion" EntitySet="CtaMovimientosAplicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CtaMovimientosAplicacion_CtaMovimientosCuotas" Association="Self.FK_CtaMovimientosAplicacion_CtaMovimientosCuotas">
+            <End Role="CtaMovimientosCuotas" EntitySet="CtaMovimientosCuotas" />
+            <End Role="CtaMovimientosAplicacion" EntitySet="CtaMovimientosAplicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CtaMovimientosAplicacion_CtaMovimientosCuotas1" Association="Self.FK_CtaMovimientosAplicacion_CtaMovimientosCuotas1">
+            <End Role="CtaMovimientosCuotas" EntitySet="CtaMovimientosCuotas" />
+            <End Role="CtaMovimientosAplicacion" EntitySet="CtaMovimientosAplicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CtaMovimientosCuotas_CtaMovimientos" Association="Self.FK_CtaMovimientosCuotas_CtaMovimientos">
+            <End Role="CtaMovimientos" EntitySet="CtaMovimientos" />
+            <End Role="CtaMovimientosCuotas" EntitySet="CtaMovimientosCuotas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CtaMovimientosFinancieras_CtaMovimientos" Association="Self.FK_CtaMovimientosFinancieras_CtaMovimientos">
+            <End Role="CtaMovimientos" EntitySet="CtaMovimientos" />
+            <End Role="CtaMovimientosFinancieras" EntitySet="CtaMovimientosFinancieras" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SecurityEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="UKSync_GetByFechaCodinsLegajo" ReturnType="Collection(Domain.UKSync_GetByFechaCodinsLegajo_Result)">
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="codins" Mode="In" Type="Int32" />
+            <Parameter Name="legajo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sav_examen_a_verificar">
+            <Parameter Name="legajo" Mode="In" Type="Int32" />
+            <Parameter Name="codmat" Mode="In" Type="String" />
+            <Parameter Name="acta" Mode="In" Type="Int32" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="folio" Mode="In" Type="Int32" />
+            <Parameter Name="libro" Mode="In" Type="String" />
+            <Parameter Name="notadef" Mode="In" Type="Int32" />
+            <Parameter Name="ausente" Mode="In" Type="Int32" />
+            <Parameter Name="notaesc" Mode="In" Type="Int32" />
+            <Parameter Name="notaora" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_cta_Anular_Movimiento_Return_Afectadas">
+          <Parameter Name="MovimientoNro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_cta_Anular_MovimientoAPL">
+            <Parameter Name="MovimientoNro" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CierraReconocimientos">
+            <Parameter Name="idReconocimiento" Mode="In" Type="Int32" />
+            <Parameter Name="legajoprov" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fn_anotados_cursoId">
+            <Parameter Name="cursoId" Type="Int64" Mode="In" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ins_uniMoodle_matric_agrup_usuarios">
+            <Parameter Name="ciclo" Mode="In" Type="Int32" />
+            <Parameter Name="cuatri" Mode="In" Type="Int32" />
+            <Parameter Name="matricProfesores" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_get_ProfesoresHs" ReturnType="Collection(Domain.sp_get_ProfesoresHs_Result)">
+            <Parameter Name="codins" Mode="In" Type="Int32" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="turno" Mode="In" Type="String" />
+            <Parameter Name="desde" Mode="In" Type="DateTime" />
+            <Parameter Name="hasta" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="UniCorreoxEdificio" EntityType="Domain.UniCorreoxEdificio" />
+          <EntitySet Name="CtaAplicacionDeConsumos" EntityType="Domain.CtaAplicacionDeConsumos" />
+          <EntitySet Name="CtaCierresDePeriodos" EntityType="Domain.CtaCierresDePeriodos" />
+          <EntitySet Name="CtaMovimientos" EntityType="Domain.CtaMovimientos" />
+          <EntitySet Name="CtaMovimientosAplicacion" EntityType="Domain.CtaMovimientosAplicacion" />
+          <EntitySet Name="CtaMovimientosCuotas" EntityType="Domain.CtaMovimientosCuotas" />
+          <EntitySet Name="CtaMovimientosFinancieras" EntityType="Domain.CtaMovimientosFinancieras" />
+          <EntitySet Name="SN_Controlador_Edificio" EntityType="Domain.SN_Controlador_Edificio" />
+          <EntitySet Name="SN_Fichadas" EntityType="Domain.SN_Fichadas" />
+          <EntitySet Name="uniActas" EntityType="Domain.uniActas" />
+          <EntitySet Name="uniActasAlumnos" EntityType="Domain.uniActasAlumnos" />
+          <EntitySet Name="UniAniosLectivosFacturados" EntityType="Domain.UniAniosLectivosFacturados" />
+          <EntitySet Name="UniAranceles" EntityType="Domain.UniAranceles" />
+          <EntitySet Name="UniCtaCteEstado" EntityType="Domain.UniCtaCteEstado" />
+          <EntitySet Name="uniCuatrimestres" EntityType="Domain.uniCuatrimestres" />
+          <EntitySet Name="uniCursos" EntityType="Domain.uniCursos" />
+          <EntitySet Name="uniCursosDias" EntityType="Domain.uniCursosDias" />
+          <EntitySet Name="uniInscripcionesMaterias" EntityType="Domain.uniInscripcionesMaterias" />
+          <EntitySet Name="uniInscripcionesMateriasDetalle" EntityType="Domain.uniInscripcionesMateriasDetalle" />
+          <EntitySet Name="uniMatriculaciones" EntityType="Domain.uniMatriculaciones" />
+          <EntitySet Name="UniProfesoresHs" EntityType="Domain.UniProfesoresHs" />
+          <EntitySet Name="uniReconocimientoMaterias" EntityType="Domain.uniReconocimientoMaterias" />
+          <EntitySet Name="uniReconocimientoMateriasDetalle" EntityType="Domain.uniReconocimientoMateriasDetalle" />
+          <EntitySet Name="uniReconocimientoMateriasFirmantes" EntityType="Domain.uniReconocimientoMateriasFirmantes" />
+          <AssociationSet Name="FK_CtaMovimientosAplicacion_CtaMovimientos" Association="Domain.FK_CtaMovimientosAplicacion_CtaMovimientos">
+            <End Role="CtaMovimientos" EntitySet="CtaMovimientos" />
+            <End Role="CtaMovimientosAplicacion" EntitySet="CtaMovimientosAplicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CtaMovimientosCuotas_CtaMovimientos" Association="Domain.FK_CtaMovimientosCuotas_CtaMovimientos">
+            <End Role="CtaMovimientos" EntitySet="CtaMovimientos" />
+            <End Role="CtaMovimientosCuotas" EntitySet="CtaMovimientosCuotas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CtaMovimientosFinancieras_CtaMovimientos" Association="Domain.FK_CtaMovimientosFinancieras_CtaMovimientos">
+            <End Role="CtaMovimientos" EntitySet="CtaMovimientos" />
+            <End Role="CtaMovimientosFinancieras" EntitySet="CtaMovimientosFinancieras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CtaMovimientosAplicacion_CtaMovimientosCuotas" Association="Domain.FK_CtaMovimientosAplicacion_CtaMovimientosCuotas">
+            <End Role="CtaMovimientosCuotas" EntitySet="CtaMovimientosCuotas" />
+            <End Role="CtaMovimientosAplicacion" EntitySet="CtaMovimientosAplicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CtaMovimientosAplicacion_CtaMovimientosCuotas1" Association="Domain.FK_CtaMovimientosAplicacion_CtaMovimientosCuotas1">
+            <End Role="CtaMovimientosCuotas" EntitySet="CtaMovimientosCuotas" />
+            <End Role="CtaMovimientosAplicacion" EntitySet="CtaMovimientosAplicacion" />
+          </AssociationSet>
+          <EntitySet Name="uniAlumnos" EntityType="Domain.uniAlumnos" />
+          <EntitySet Name="uniCorreoEnviado" EntityType="Domain.uniCorreoEnviado" />
+        </EntityContainer>
+        <ComplexType Name="UKSync_GetByFechaCodinsLegajo_Result">
+          <Property Type="Int64" Name="cursoId" Nullable="false" />
+          <Property Type="String" Name="dia" Nullable="false" MaxLength="2" />
+          <Property Type="DateTime" Name="desde" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="hasta" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="codins" Nullable="false" />
+          <Property Type="Int32" Name="ClaseNro" Nullable="false" />
+          <Property Type="Int32" Name="legajo" Nullable="false" />
+          <Property Type="Int32" Name="codcur" Nullable="false" />
+          <Property Type="String" Name="codcar" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_get_ProfesoresHs_Result">
+          <Property Type="Int64" Name="CursoId" Nullable="false" />
+          <Property Type="Int32" Name="ClaseNro" Nullable="false" />
+          <Property Type="Int32" Name="LegajoProfesor" Nullable="false" />
+          <Property Type="String" Name="apellido" Nullable="true" MaxLength="51" />
+          <Property Type="Decimal" Name="HsPlanificadas" Nullable="true" Precision="22" Scale="6" />
+          <Property Type="DateTime" Name="Entrada" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Salida" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Ausente" Nullable="false" />
+          <Property Type="Int32" Name="Revision" Nullable="false" />
+          <Property Type="Double" Name="cantprof" Nullable="true" />
+          <Property Type="Int32" Name="NoPlanificado" Nullable="false" />
+          <Property Type="Int32" Name="LegajoProfesorReemplazo" Nullable="true" />
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Version" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaCursada" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="HsEfectivas" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Persistido" Nullable="false" />
+          <Property Type="String" Name="NombreColegio" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="NombreMateria" Nullable="true" MaxLength="35" />
+          <Property Type="DateTime" Name="FechaPlanificada" Nullable="false" Precision="23" />
+          <Property Type="String" Name="turno" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="codins" Nullable="true" />
+          <Property Type="String" Name="Comentarios" Nullable="true" />
+          <Property Type="Int32" Name="codcur" Nullable="false" />
+          <Property Type="String" Name="codmat" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="comision" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="HoraInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="HoraFin" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EntradaEditada" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SalidaEditada" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="NovedadesId" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="UniCorreoxEdificio">
+          <Key>
+            <PropertyRef Name="codins" />
+            <PropertyRef Name="Correo" />
+          </Key>
+          <Property Name="codins" Type="Int32" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoCopia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CtaAplicacionDeConsumos">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovimientoItemClave" Type="Int64" Nullable="false" />
+          <Property Name="ConsumoTipoId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IdentificadorConsumo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdentificadorConsumo2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MovimientoItemClaveReferencia" Type="Int64" />
+          <Property Name="UnidadMedidaId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Version" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CtaCierresDePeriodos">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaDesde" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaHasta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Version" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CtaMovimientos">
+          <Key>
+            <PropertyRef Name="MovimientoNro" />
+          </Key>
+          <Property Name="MovimientoNro" Type="Int64" Nullable="false" />
+          <Property Name="MovimientoTipoId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ComprobanteId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SignoComprobante" Type="Int32" Nullable="false" />
+          <Property Name="CondicionDePagoId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SucursalId" Type="Int32" Nullable="false" />
+          <Property Name="EstablecimientoId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ComprobanteNro" Type="Int32" Nullable="false" />
+          <Property Name="FechaMovimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaComprobante" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaVencimientoBaseInformada" Type="DateTime" Precision="3" />
+          <Property Name="EntidadId" Type="Int32" />
+          <Property Name="EntidadDescripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EntidadGrupoId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GaranteId" Type="Int32" />
+          <Property Name="PatrocinadorId" Type="Int32" />
+          <Property Name="CuentaContableTipoId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ListaPrecioId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DivisaId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Importe" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Comentario" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Version" Type="Int32" Nullable="false" />
+          <Property Name="Anulado" Type="Boolean" />
+          <NavigationProperty Name="CtaMovimientosAplicacion" Relationship="Domain.FK_CtaMovimientosAplicacion_CtaMovimientos" FromRole="CtaMovimientos" ToRole="CtaMovimientosAplicacion" />
+          <NavigationProperty Name="CtaMovimientosCuotas" Relationship="Domain.FK_CtaMovimientosCuotas_CtaMovimientos" FromRole="CtaMovimientos" ToRole="CtaMovimientosCuotas" />
+          <NavigationProperty Name="CtaMovimientosFinancieras" Relationship="Domain.FK_CtaMovimientosFinancieras_CtaMovimientos" FromRole="CtaMovimientos" ToRole="CtaMovimientosFinancieras" />
+        </EntityType>
+        <EntityType Name="CtaMovimientosAplicacion">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovimientoNro" Type="Int64" Nullable="false" />
+          <Property Name="Orden" Type="Int32" Nullable="false" />
+          <Property Name="MovimientoCuotaClaveAplicado" Type="Int64" Nullable="false" />
+          <Property Name="MovimientoCuotaClaveAplicando" Type="Int64" Nullable="false" />
+          <Property Name="DivisaId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Importe" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Version" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CtaMovimientos" Relationship="Domain.FK_CtaMovimientosAplicacion_CtaMovimientos" FromRole="CtaMovimientosAplicacion" ToRole="CtaMovimientos" />
+          <NavigationProperty Name="CtaMovimientosCuotas" Relationship="Domain.FK_CtaMovimientosAplicacion_CtaMovimientosCuotas" FromRole="CtaMovimientosAplicacion" ToRole="CtaMovimientosCuotas" />
+          <NavigationProperty Name="CtaMovimientosCuotas1" Relationship="Domain.FK_CtaMovimientosAplicacion_CtaMovimientosCuotas1" FromRole="CtaMovimientosAplicacion" ToRole="CtaMovimientosCuotas" />
+        </EntityType>
+        <EntityType Name="CtaMovimientosCuotas">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovimientoNro" Type="Int64" Nullable="false" />
+          <Property Name="Cuota" Type="Int32" Nullable="false" />
+          <Property Name="Vencimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DivisaId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Importe" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="CuentaCorrienteTipo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="origen" Type="Int32" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Version" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CtaMovimientos" Relationship="Domain.FK_CtaMovimientosCuotas_CtaMovimientos" FromRole="CtaMovimientosCuotas" ToRole="CtaMovimientos" />
+          <NavigationProperty Name="CtaMovimientosAplicacion" Relationship="Domain.FK_CtaMovimientosAplicacion_CtaMovimientosCuotas" FromRole="CtaMovimientosCuotas" ToRole="CtaMovimientosAplicacion" />
+          <NavigationProperty Name="CtaMovimientosAplicacion1" Relationship="Domain.FK_CtaMovimientosAplicacion_CtaMovimientosCuotas1" FromRole="CtaMovimientosCuotas" ToRole="CtaMovimientosAplicacion" />
+        </EntityType>
+        <EntityType Name="CtaMovimientosFinancieras">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovimientoNro" Type="Int64" Nullable="false" />
+          <Property Name="Orden" Type="Int32" Nullable="false" />
+          <Property Name="EntradaSalida" Type="Int32" Nullable="false" />
+          <Property Name="FinancieraPropiaId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ComprobanteId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ComprobanteNro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CuentaContable" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CentroDeCosto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DivisaId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Importe" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Version" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CtaMovimientos" Relationship="Domain.FK_CtaMovimientosFinancieras_CtaMovimientos" FromRole="CtaMovimientosFinancieras" ToRole="CtaMovimientos" />
+        </EntityType>
+        <EntityType Name="SN_Controlador_Edificio">
+          <Key>
+            <PropertyRef Name="IdControlador" />
+          </Key>
+          <Property Name="IdControlador" Type="Int32" Nullable="false" />
+          <Property Name="CodIns" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SN_Fichadas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Controlador" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Accion" Type="Int32" />
+          <Property Name="Consola" Type="Int32" />
+          <Property Name="Tarjeta" Type="Int32" />
+          <Property Name="Capturada" Type="DateTime" Precision="3" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Transferida" Type="Int32" />
+          <Property Name="TReal" Type="Int32" />
+          <Property Name="Secuencia" Type="Int32" />
+          <Property Name="Observaciones" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="IdPerso" Type="Int32" />
+          <Property Name="legajo" Type="Int32" Nullable="false" />
+          <Property Name="Planta" Type="Int32" Nullable="false" />
+          <Property Name="EstadoSincro" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uniActas">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="Int64" Nullable="false" />
+          <Property Name="numeroActa" Type="Int32" Nullable="false" />
+          <Property Name="numeroActaDefinitivo" Type="Int32" Nullable="false" />
+          <Property Name="papel1" Type="Int64" Nullable="false" />
+          <Property Name="papel2" Type="Int64" Nullable="false" />
+          <Property Name="ciclo" Type="Int32" />
+          <Property Name="turno" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="codmat" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="libro" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="folio" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="hora" Type="DateTime" Precision="3" />
+          <Property Name="codins" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="usrnom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ftrn" Type="DateTime" Precision="3" />
+          <Property Name="regional" Type="Int32" />
+          <Property Name="estadoActa" Type="Int32" Nullable="false" />
+          <Property Name="Fila" Type="Int32" />
+          <Property Name="MesaId" Type="Int64" />
+          <Property Name="codigoComprobacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="uniActasAlumnos">
+          <Key>
+            <PropertyRef Name="Clave" />
+            <PropertyRef Name="legajo" />
+          </Key>
+          <Property Name="Clave" Type="Int64" Nullable="false" />
+          <Property Name="legajo" Type="Int32" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ausente" Type="Int32" />
+          <Property Name="cond" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="notaesc" Type="Int32" />
+          <Property Name="notaora" Type="Int32" />
+          <Property Name="notadef" Type="Int32" />
+          <Property Name="orden" Type="Int32" Nullable="false" />
+          <Property Name="Fila" Type="Int32" />
+          <Property Name="codigoComprobacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UniAniosLectivosFacturados">
+          <Key>
+            <PropertyRef Name="legajo" />
+            <PropertyRef Name="añoLectivoFacturado" />
+          </Key>
+          <Property Name="legajo" Type="Int32" Nullable="false" />
+          <Property Name="añoLectivoFacturado" Type="Int32" Nullable="false" />
+          <Property Name="derechosExamenIncluidos" Type="Boolean" />
+          <Property Name="PorAnioDeCorte" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="UniAranceles">
+          <Key>
+            <PropertyRef Name="clave" />
+            <PropertyRef Name="aniolectivo" />
+          </Key>
+          <Property Name="clave" Type="Int64" Nullable="false" />
+          <Property Name="aniolectivo" Type="Int32" Nullable="false" />
+          <Property Name="tipoArancel" Type="Int32" Nullable="false" />
+          <Property Name="condicionDePago" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="mensajeArancel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="usrnom" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ftrn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fila" Type="Int32" Nullable="false" />
+          <Property Name="tipoOrigen" Type="Int32" />
+          <Property Name="claveOrigen" Type="Int64" />
+        </EntityType>
+        <EntityType Name="UniCtaCteEstado">
+          <Key>
+            <PropertyRef Name="legajo" />
+          </Key>
+          <Property Name="legajo" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Permisos" Type="Int32" Nullable="false" />
+          <Property Name="Deuda" Type="Decimal" Precision="20" Scale="10" />
+          <Property Name="InscrcripcionAFavor" Type="Decimal" Precision="20" Scale="10" />
+          <Property Name="InsmatAnio" Type="Int32" />
+          <Property Name="DeudaSuspension" Type="Decimal" Precision="20" Scale="10" />
+          <Property Name="DeudaBaja" Type="Decimal" Precision="20" Scale="10" />
+          <Property Name="Origen" Type="Int32" />
+        </EntityType>
+        <EntityType Name="uniCuatrimestres">
+          <Key>
+            <PropertyRef Name="cuatri" />
+          </Key>
+          <Property Name="cuatri" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MesInicio" Type="Int32" />
+          <Property Name="MesFin" Type="Int32" />
+        </EntityType>
+        <EntityType Name="uniCursos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="codcar" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="codcur" Type="Int32" Nullable="false" />
+          <Property Name="codmat" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ano" Type="Int32" Nullable="false" />
+          <Property Name="cuatri" Type="Int32" Nullable="false" />
+          <Property Name="turno" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="letrad" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="letrah" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="comision" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="cupo" Type="Int32" />
+          <Property Name="anotados" Type="Int32" />
+          <Property Name="anomat" Type="Int32" />
+          <Property Name="codcur2" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="usrnom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ftrn" Type="DateTime" Precision="3" />
+          <Property Name="promo" Type="Int32" />
+          <Property Name="qclases" Type="Int32" />
+          <Property Name="qparcial" Type="Int32" />
+          <Property Name="qtopepro" Type="Double" />
+          <Property Name="qtopereg" Type="Double" />
+          <Property Name="regional" Type="Int32" />
+          <Property Name="cantprof" Type="Double" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cupoMinimo" Type="Int32" />
+          <Property Name="Fila" Type="Int32" Nullable="false" />
+          <Property Name="modalidad" Type="Int32" />
+        </EntityType>
+        <EntityType Name="uniCursosDias">
+          <Key>
+            <PropertyRef Name="cursoId" />
+            <PropertyRef Name="ActividadNro" />
+            <PropertyRef Name="dia" />
+          </Key>
+          <Property Name="cursoId" Type="Int64" Nullable="false" />
+          <Property Name="ActividadNro" Type="Int32" Nullable="false" />
+          <Property Name="dia" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ActividadTipoId" Type="Int32" />
+          <Property Name="desde" Type="DateTime" Precision="3" />
+          <Property Name="hasta" Type="DateTime" Precision="3" />
+          <Property Name="codins" Type="Int32" />
+          <Property Name="codaul" Type="Int32" />
+          <Property Name="usrnom" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="ftrn" Type="DateTime" Precision="3" />
+          <Property Name="Version" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uniInscripcionesMaterias">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="Int64" Nullable="false" />
+          <Property Name="legajo" Type="Int32" />
+          <Property Name="finsc" Type="DateTime" Precision="3" />
+          <Property Name="ciclo" Type="Int32" />
+          <Property Name="cuatri" Type="Int32" />
+          <Property Name="codcar" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="Fila" Type="Int64" Nullable="false" />
+          <Property Name="Eliminada" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="uniInscripcionesMateriasDetalle">
+          <Key>
+            <PropertyRef Name="Clave" />
+            <PropertyRef Name="codmat" />
+          </Key>
+          <Property Name="Clave" Type="Int64" Nullable="false" />
+          <Property Name="codmat" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="codcur" Type="Int32" />
+          <Property Name="Fila" Type="Int64" Nullable="false" />
+          <Property Name="cursoId" Type="Int64" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="uniMatriculaciones">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="Int64" Nullable="false" />
+          <Property Name="legajoProvisorio" Type="Int32" Nullable="false" />
+          <Property Name="ciclo" Type="Int32" Nullable="false" />
+          <Property Name="tipoMatriculacion" Type="Int32" Nullable="false" />
+          <Property Name="condicionDePago" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Eliminada" Type="Boolean" Nullable="false" />
+          <Property Name="mensajeMatri" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Fila" Type="Int32" Nullable="false" />
+          <Property Name="claveOrigen" Type="Int64" />
+          <Property Name="anioMaximo" Type="Int32" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UniProfesoresHs">
+          <Key>
+            <PropertyRef Name="CursoId" />
+            <PropertyRef Name="ClaseNro" />
+            <PropertyRef Name="LegajoProfesor" />
+          </Key>
+          <Property Name="CursoId" Type="Int64" Nullable="false" />
+          <Property Name="ClaseNro" Type="Int32" Nullable="false" />
+          <Property Name="LegajoProfesor" Type="Int32" Nullable="false" />
+          <Property Name="Entrada" Type="DateTime" Precision="3" />
+          <Property Name="Salida" Type="DateTime" Precision="3" />
+          <Property Name="Ausente" Type="Boolean" Nullable="false" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Revision" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCursada" Type="DateTime" Precision="3" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Version" Type="Int32" Nullable="false" />
+          <Property Name="NoPlanificado" Type="Boolean" Nullable="false" />
+          <Property Name="LegajoProfesorReemplazo" Type="Int32" />
+          <Property Name="HsPlanificadas" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HsEfectivas" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Comentarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EntradaEditada" Type="DateTime" Precision="3" />
+          <Property Name="SalidaEditada" Type="DateTime" Precision="3" />
+          <Property Name="NovedadesId" Type="Int32" />
+          <Property Name="Estado" Type="Int32" />
+          <Property Name="HorasAprobadas" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="uniReconocimientoMaterias">
+          <Key>
+            <PropertyRef Name="Clave" />
+          </Key>
+          <Property Name="Clave" Type="Int32" Nullable="false" />
+          <Property Name="numeroTramite" Type="Int32" />
+          <Property Name="legajo" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="numeroResolucion" Type="Int32" />
+          <Property Name="fechaResolucion" Type="DateTime" Precision="3" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="fechaVencimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tipoDocumento" Type="Int32" />
+          <Property Name="nroDocumento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Fila" Type="Int32" Nullable="false" />
+          <Property Name="carrera" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoComprobacion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="papel1" Type="Int64" Nullable="false" />
+          <Property Name="papel2" Type="Int64" Nullable="false" />
+          <Property Name="baja" Type="Boolean" />
+          <Property Name="Tipo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uniReconocimientoMateriasDetalle">
+          <Key>
+            <PropertyRef Name="idReconocimientoMaterias" />
+            <PropertyRef Name="codmat" />
+          </Key>
+          <Property Name="idReconocimientoMaterias" Type="Int32" Nullable="false" />
+          <Property Name="codmat" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fila" Type="Int32" Nullable="false" />
+          <Property Name="CodigoComprobacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CodmatOptativa" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="uniReconocimientoMateriasFirmantes">
+          <Key>
+            <PropertyRef Name="idReconocimientoMaterias" />
+            <PropertyRef Name="legajo" />
+          </Key>
+          <Property Name="idReconocimientoMaterias" Type="Int32" Nullable="false" />
+          <Property Name="legajo" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fila" Type="Int32" Nullable="false" />
+          <Property Name="CodigoComprobacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_CtaMovimientosAplicacion_CtaMovimientos">
+          <End Type="Domain.CtaMovimientos" Role="CtaMovimientos" Multiplicity="1" />
+          <End Type="Domain.CtaMovimientosAplicacion" Role="CtaMovimientosAplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CtaMovimientos">
+              <PropertyRef Name="MovimientoNro" />
+            </Principal>
+            <Dependent Role="CtaMovimientosAplicacion">
+              <PropertyRef Name="MovimientoNro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CtaMovimientosCuotas_CtaMovimientos">
+          <End Type="Domain.CtaMovimientos" Role="CtaMovimientos" Multiplicity="1" />
+          <End Type="Domain.CtaMovimientosCuotas" Role="CtaMovimientosCuotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CtaMovimientos">
+              <PropertyRef Name="MovimientoNro" />
+            </Principal>
+            <Dependent Role="CtaMovimientosCuotas">
+              <PropertyRef Name="MovimientoNro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CtaMovimientosFinancieras_CtaMovimientos">
+          <End Type="Domain.CtaMovimientos" Role="CtaMovimientos" Multiplicity="1" />
+          <End Type="Domain.CtaMovimientosFinancieras" Role="CtaMovimientosFinancieras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CtaMovimientos">
+              <PropertyRef Name="MovimientoNro" />
+            </Principal>
+            <Dependent Role="CtaMovimientosFinancieras">
+              <PropertyRef Name="MovimientoNro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CtaMovimientosAplicacion_CtaMovimientosCuotas">
+          <End Type="Domain.CtaMovimientosCuotas" Role="CtaMovimientosCuotas" Multiplicity="1" />
+          <End Type="Domain.CtaMovimientosAplicacion" Role="CtaMovimientosAplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CtaMovimientosCuotas">
+              <PropertyRef Name="Clave" />
+            </Principal>
+            <Dependent Role="CtaMovimientosAplicacion">
+              <PropertyRef Name="MovimientoCuotaClaveAplicado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CtaMovimientosAplicacion_CtaMovimientosCuotas1">
+          <End Type="Domain.CtaMovimientosCuotas" Role="CtaMovimientosCuotas" Multiplicity="1" />
+          <End Type="Domain.CtaMovimientosAplicacion" Role="CtaMovimientosAplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CtaMovimientosCuotas">
+              <PropertyRef Name="Clave" />
+            </Principal>
+            <Dependent Role="CtaMovimientosAplicacion">
+              <PropertyRef Name="MovimientoCuotaClaveAplicando" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="uniAlumnos">
+          <Key>
+            <PropertyRef Name="legprovi" />
+          </Key>
+          <Property Name="legprovi" Type="Int32" Nullable="false" />
+          <Property Name="legdef" Type="Int32" />
+          <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecnac" Type="DateTime" Precision="3" />
+          <Property Name="lugar" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="docnac" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="cedide" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="libciv" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="libenr" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="argext" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="nacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="nropas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tramite" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="carrera" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="regional" Type="Int32" />
+          <Property Name="turno" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="finscrip" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="regional_cursa" Type="Int32" />
+          <Property Name="version2" Type="Int32" />
+          <Property Name="documentoExtranjero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaisDocumento" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Origen" Type="Int32" />
+          <Property Name="IdEntidad" Type="Int32" />
+          <Property Name="CicloIngreso" Type="Int32" />
+          <Property Name="CuatriIngreso" Type="Int32" />
+          <Property Name="Modalidad" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IdCanal" Type="Int32" />
+          <Property Name="CanalDescripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="uniCorreoEnviado">
+          <Key>
+            <PropertyRef Name="codins" />
+            <PropertyRef Name="legajoProfesor" />
+            <PropertyRef Name="cursoid" />
+          </Key>
+          <Property Name="codins" Type="Int32" Nullable="false" />
+          <Property Name="legajoProfesor" Type="Int32" Nullable="false" />
+          <Property Name="cursoid" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeEnvio" Type="DateTime" Precision="3" />
+          <Property Name="Emisor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Receptor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoAviso" Type="Int32" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DomainStoreContainer" CdmEntityContainer="SecurityEntities">
+          <FunctionImportMapping FunctionImportName="sp_sav_examen_a_verificar" FunctionName="Domain.Store.sp_sav_examen_a_verificar" />
+          <FunctionImportMapping FunctionImportName="sp_cta_Anular_Movimiento_Return_Afectadas" FunctionName="Domain.Store.sp_cta_Anular_Movimiento_Return_Afectadas" />
+          <FunctionImportMapping FunctionImportName="sp_cta_Anular_MovimientoAPL" FunctionName="Domain.Store.sp_cta_Anular_MovimientoAPL" />
+          <FunctionImportMapping FunctionImportName="sp_CierraReconocimientos" FunctionName="Domain.Store.sp_CierraReconocimientos" />
+          <FunctionImportMapping FunctionImportName="sp_ins_uniMoodle_matric_agrup_usuarios" FunctionName="Domain.Store.sp_ins_uniMoodle_matric_agrup_usuarios" />
+          <FunctionImportMapping FunctionImportName="sp_get_ProfesoresHs" FunctionName="Domain.Store.sp_get_ProfesoresHs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Domain.sp_get_ProfesoresHs_Result">
+                <ScalarProperty Name="CursoId" ColumnName="CursoId" />
+                <ScalarProperty Name="ClaseNro" ColumnName="ClaseNro" />
+                <ScalarProperty Name="LegajoProfesor" ColumnName="LegajoProfesor" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="HsPlanificadas" ColumnName="HsPlanificadas" />
+                <ScalarProperty Name="Entrada" ColumnName="Entrada" />
+                <ScalarProperty Name="Salida" ColumnName="Salida" />
+                <ScalarProperty Name="Ausente" ColumnName="Ausente" />
+                <ScalarProperty Name="Revision" ColumnName="Revision" />
+                <ScalarProperty Name="cantprof" ColumnName="cantprof" />
+                <ScalarProperty Name="NoPlanificado" ColumnName="NoPlanificado" />
+                <ScalarProperty Name="LegajoProfesorReemplazo" ColumnName="LegajoProfesorReemplazo" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="FechaCursada" ColumnName="FechaCursada" />
+                <ScalarProperty Name="HsEfectivas" ColumnName="HsEfectivas" />
+                <ScalarProperty Name="Persistido" ColumnName="Persistido" />
+                <ScalarProperty Name="NombreColegio" ColumnName="NombreColegio" />
+                <ScalarProperty Name="NombreMateria" ColumnName="NombreMateria" />
+                <ScalarProperty Name="FechaPlanificada" ColumnName="FechaPlanificada" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+                <ScalarProperty Name="codins" ColumnName="codins" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="codcur" ColumnName="codcur" />
+                <ScalarProperty Name="codmat" ColumnName="codmat" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
+                <ScalarProperty Name="EntradaEditada" ColumnName="EntradaEditada" />
+                <ScalarProperty Name="SalidaEditada" ColumnName="SalidaEditada" />
+                <ScalarProperty Name="NovedadesId" ColumnName="NovedadesId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="UniCorreoxEdificio">
+            <EntityTypeMapping TypeName="Domain.UniCorreoxEdificio">
+              <MappingFragment StoreEntitySet="UniCorreoxEdificio">
+                <ScalarProperty Name="CorreoCopia" ColumnName="CorreoCopia" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="codins" ColumnName="codins" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CtaAplicacionDeConsumos">
+            <EntityTypeMapping TypeName="Domain.CtaAplicacionDeConsumos">
+              <MappingFragment StoreEntitySet="CtaAplicacionDeConsumos">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="UnidadMedidaId" ColumnName="UnidadMedidaId" />
+                <ScalarProperty Name="MovimientoItemClaveReferencia" ColumnName="MovimientoItemClaveReferencia" />
+                <ScalarProperty Name="IdentificadorConsumo2" ColumnName="IdentificadorConsumo2" />
+                <ScalarProperty Name="IdentificadorConsumo1" ColumnName="IdentificadorConsumo1" />
+                <ScalarProperty Name="ConsumoTipoId" ColumnName="ConsumoTipoId" />
+                <ScalarProperty Name="MovimientoItemClave" ColumnName="MovimientoItemClave" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CtaCierresDePeriodos">
+            <EntityTypeMapping TypeName="Domain.CtaCierresDePeriodos">
+              <MappingFragment StoreEntitySet="CtaCierresDePeriodos">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="FechaHasta" ColumnName="FechaHasta" />
+                <ScalarProperty Name="FechaDesde" ColumnName="FechaDesde" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CtaMovimientos">
+            <EntityTypeMapping TypeName="Domain.CtaMovimientos">
+              <MappingFragment StoreEntitySet="CtaMovimientos">
+                <ScalarProperty Name="Anulado" ColumnName="Anulado" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="DivisaId" ColumnName="DivisaId" />
+                <ScalarProperty Name="ListaPrecioId" ColumnName="ListaPrecioId" />
+                <ScalarProperty Name="CuentaContableTipoId" ColumnName="CuentaContableTipoId" />
+                <ScalarProperty Name="PatrocinadorId" ColumnName="PatrocinadorId" />
+                <ScalarProperty Name="GaranteId" ColumnName="GaranteId" />
+                <ScalarProperty Name="EntidadGrupoId" ColumnName="EntidadGrupoId" />
+                <ScalarProperty Name="EntidadDescripcion" ColumnName="EntidadDescripcion" />
+                <ScalarProperty Name="EntidadId" ColumnName="EntidadId" />
+                <ScalarProperty Name="FechaVencimientoBaseInformada" ColumnName="FechaVencimientoBaseInformada" />
+                <ScalarProperty Name="FechaComprobante" ColumnName="FechaComprobante" />
+                <ScalarProperty Name="FechaMovimiento" ColumnName="FechaMovimiento" />
+                <ScalarProperty Name="ComprobanteNro" ColumnName="ComprobanteNro" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+                <ScalarProperty Name="SucursalId" ColumnName="SucursalId" />
+                <ScalarProperty Name="CondicionDePagoId" ColumnName="CondicionDePagoId" />
+                <ScalarProperty Name="SignoComprobante" ColumnName="SignoComprobante" />
+                <ScalarProperty Name="ComprobanteId" ColumnName="ComprobanteId" />
+                <ScalarProperty Name="MovimientoTipoId" ColumnName="MovimientoTipoId" />
+                <ScalarProperty Name="MovimientoNro" ColumnName="MovimientoNro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CtaMovimientosAplicacion">
+            <EntityTypeMapping TypeName="Domain.CtaMovimientosAplicacion">
+              <MappingFragment StoreEntitySet="CtaMovimientosAplicacion">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="DivisaId" ColumnName="DivisaId" />
+                <ScalarProperty Name="MovimientoCuotaClaveAplicando" ColumnName="MovimientoCuotaClaveAplicando" />
+                <ScalarProperty Name="MovimientoCuotaClaveAplicado" ColumnName="MovimientoCuotaClaveAplicado" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="MovimientoNro" ColumnName="MovimientoNro" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CtaMovimientosCuotas">
+            <EntityTypeMapping TypeName="Domain.CtaMovimientosCuotas">
+              <MappingFragment StoreEntitySet="CtaMovimientosCuotas">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+                <ScalarProperty Name="CuentaCorrienteTipo" ColumnName="CuentaCorrienteTipo" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="DivisaId" ColumnName="DivisaId" />
+                <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
+                <ScalarProperty Name="Cuota" ColumnName="Cuota" />
+                <ScalarProperty Name="MovimientoNro" ColumnName="MovimientoNro" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CtaMovimientosFinancieras">
+            <EntityTypeMapping TypeName="Domain.CtaMovimientosFinancieras">
+              <MappingFragment StoreEntitySet="CtaMovimientosFinancieras">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="DivisaId" ColumnName="DivisaId" />
+                <ScalarProperty Name="CentroDeCosto" ColumnName="CentroDeCosto" />
+                <ScalarProperty Name="CuentaContable" ColumnName="CuentaContable" />
+                <ScalarProperty Name="ComprobanteNro" ColumnName="ComprobanteNro" />
+                <ScalarProperty Name="ComprobanteId" ColumnName="ComprobanteId" />
+                <ScalarProperty Name="FinancieraPropiaId" ColumnName="FinancieraPropiaId" />
+                <ScalarProperty Name="EntradaSalida" ColumnName="EntradaSalida" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="MovimientoNro" ColumnName="MovimientoNro" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SN_Controlador_Edificio">
+            <EntityTypeMapping TypeName="Domain.SN_Controlador_Edificio">
+              <MappingFragment StoreEntitySet="SN_Controlador_Edificio">
+                <ScalarProperty Name="CodIns" ColumnName="CodIns" />
+                <ScalarProperty Name="IdControlador" ColumnName="IdControlador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SN_Fichadas">
+            <EntityTypeMapping TypeName="Domain.SN_Fichadas">
+              <MappingFragment StoreEntitySet="SN_Fichadas">
+                <ScalarProperty Name="EstadoSincro" ColumnName="EstadoSincro" />
+                <ScalarProperty Name="Planta" ColumnName="Planta" />
+                <ScalarProperty Name="legajo" ColumnName="legajo" />
+                <ScalarProperty Name="IdPerso" ColumnName="IdPerso" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Secuencia" ColumnName="Secuencia" />
+                <ScalarProperty Name="TReal" ColumnName="TReal" />
+                <ScalarProperty Name="Transferida" ColumnName="Transferida" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Capturada" ColumnName="Capturada" />
+                <ScalarProperty Name="Tarjeta" ColumnName="Tarjeta" />
+                <ScalarProperty Name="Consola" ColumnName="Consola" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniActas">
+            <EntityTypeMapping TypeName="Domain.uniActas">
+              <MappingFragment StoreEntitySet="uniActas">
+                <ScalarProperty Name="codigoComprobacion" ColumnName="codigoComprobacion" />
+                <ScalarProperty Name="MesaId" ColumnName="MesaId" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="estadoActa" ColumnName="estadoActa" />
+                <ScalarProperty Name="regional" ColumnName="regional" />
+                <ScalarProperty Name="ftrn" ColumnName="ftrn" />
+                <ScalarProperty Name="usrnom" ColumnName="usrnom" />
+                <ScalarProperty Name="codins" ColumnName="codins" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="folio" ColumnName="folio" />
+                <ScalarProperty Name="libro" ColumnName="libro" />
+                <ScalarProperty Name="codmat" ColumnName="codmat" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+                <ScalarProperty Name="ciclo" ColumnName="ciclo" />
+                <ScalarProperty Name="papel2" ColumnName="papel2" />
+                <ScalarProperty Name="papel1" ColumnName="papel1" />
+                <ScalarProperty Name="numeroActaDefinitivo" ColumnName="numeroActaDefinitivo" />
+                <ScalarProperty Name="numeroActa" ColumnName="numeroActa" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniActasAlumnos">
+            <EntityTypeMapping TypeName="Domain.uniActasAlumnos">
+              <MappingFragment StoreEntitySet="uniActasAlumnos">
+                <ScalarProperty Name="codigoComprobacion" ColumnName="codigoComprobacion" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="notadef" ColumnName="notadef" />
+                <ScalarProperty Name="notaora" ColumnName="notaora" />
+                <ScalarProperty Name="notaesc" ColumnName="notaesc" />
+                <ScalarProperty Name="cond" ColumnName="cond" />
+                <ScalarProperty Name="ausente" ColumnName="ausente" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="legajo" ColumnName="legajo" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UniAniosLectivosFacturados">
+            <EntityTypeMapping TypeName="Domain.UniAniosLectivosFacturados">
+              <MappingFragment StoreEntitySet="UniAniosLectivosFacturados">
+                <ScalarProperty Name="PorAnioDeCorte" ColumnName="PorAnioDeCorte" />
+                <ScalarProperty Name="derechosExamenIncluidos" ColumnName="derechosExamenIncluidos" />
+                <ScalarProperty Name="añoLectivoFacturado" ColumnName="añoLectivoFacturado" />
+                <ScalarProperty Name="legajo" ColumnName="legajo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UniAranceles">
+            <EntityTypeMapping TypeName="Domain.UniAranceles">
+              <MappingFragment StoreEntitySet="UniAranceles">
+                <ScalarProperty Name="claveOrigen" ColumnName="claveOrigen" />
+                <ScalarProperty Name="tipoOrigen" ColumnName="tipoOrigen" />
+                <ScalarProperty Name="fila" ColumnName="fila" />
+                <ScalarProperty Name="ftrn" ColumnName="ftrn" />
+                <ScalarProperty Name="usrnom" ColumnName="usrnom" />
+                <ScalarProperty Name="mensajeArancel" ColumnName="mensajeArancel" />
+                <ScalarProperty Name="condicionDePago" ColumnName="condicionDePago" />
+                <ScalarProperty Name="tipoArancel" ColumnName="tipoArancel" />
+                <ScalarProperty Name="aniolectivo" ColumnName="aniolectivo" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UniCtaCteEstado">
+            <EntityTypeMapping TypeName="Domain.UniCtaCteEstado">
+              <MappingFragment StoreEntitySet="UniCtaCteEstado">
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="DeudaBaja" ColumnName="DeudaBaja" />
+                <ScalarProperty Name="DeudaSuspension" ColumnName="DeudaSuspension" />
+                <ScalarProperty Name="InsmatAnio" ColumnName="InsmatAnio" />
+                <ScalarProperty Name="InscrcripcionAFavor" ColumnName="InscrcripcionAFavor" />
+                <ScalarProperty Name="Deuda" ColumnName="Deuda" />
+                <ScalarProperty Name="Permisos" ColumnName="Permisos" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="legajo" ColumnName="legajo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniCuatrimestres">
+            <EntityTypeMapping TypeName="Domain.uniCuatrimestres">
+              <MappingFragment StoreEntitySet="uniCuatrimestres">
+                <ScalarProperty Name="MesFin" ColumnName="MesFin" />
+                <ScalarProperty Name="MesInicio" ColumnName="MesInicio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cuatri" ColumnName="cuatri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniCursos">
+            <EntityTypeMapping TypeName="Domain.uniCursos">
+              <MappingFragment StoreEntitySet="uniCursos">
+                <ScalarProperty Name="modalidad" ColumnName="modalidad" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="cupoMinimo" ColumnName="cupoMinimo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cantprof" ColumnName="cantprof" />
+                <ScalarProperty Name="regional" ColumnName="regional" />
+                <ScalarProperty Name="qtopereg" ColumnName="qtopereg" />
+                <ScalarProperty Name="qtopepro" ColumnName="qtopepro" />
+                <ScalarProperty Name="qparcial" ColumnName="qparcial" />
+                <ScalarProperty Name="qclases" ColumnName="qclases" />
+                <ScalarProperty Name="promo" ColumnName="promo" />
+                <ScalarProperty Name="ftrn" ColumnName="ftrn" />
+                <ScalarProperty Name="usrnom" ColumnName="usrnom" />
+                <ScalarProperty Name="codcur2" ColumnName="codcur2" />
+                <ScalarProperty Name="anomat" ColumnName="anomat" />
+                <ScalarProperty Name="anotados" ColumnName="anotados" />
+                <ScalarProperty Name="cupo" ColumnName="cupo" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="letrah" ColumnName="letrah" />
+                <ScalarProperty Name="letrad" ColumnName="letrad" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+                <ScalarProperty Name="cuatri" ColumnName="cuatri" />
+                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="codmat" ColumnName="codmat" />
+                <ScalarProperty Name="codcur" ColumnName="codcur" />
+                <ScalarProperty Name="codcar" ColumnName="codcar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniCursosDias">
+            <EntityTypeMapping TypeName="Domain.uniCursosDias">
+              <MappingFragment StoreEntitySet="uniCursosDias">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="ftrn" ColumnName="ftrn" />
+                <ScalarProperty Name="usrnom" ColumnName="usrnom" />
+                <ScalarProperty Name="codaul" ColumnName="codaul" />
+                <ScalarProperty Name="codins" ColumnName="codins" />
+                <ScalarProperty Name="hasta" ColumnName="hasta" />
+                <ScalarProperty Name="desde" ColumnName="desde" />
+                <ScalarProperty Name="ActividadTipoId" ColumnName="ActividadTipoId" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
+                <ScalarProperty Name="ActividadNro" ColumnName="ActividadNro" />
+                <ScalarProperty Name="cursoId" ColumnName="cursoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniInscripcionesMaterias">
+            <EntityTypeMapping TypeName="Domain.uniInscripcionesMaterias">
+              <MappingFragment StoreEntitySet="uniInscripcionesMaterias">
+                <ScalarProperty Name="Eliminada" ColumnName="Eliminada" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="codcar" ColumnName="codcar" />
+                <ScalarProperty Name="cuatri" ColumnName="cuatri" />
+                <ScalarProperty Name="ciclo" ColumnName="ciclo" />
+                <ScalarProperty Name="finsc" ColumnName="finsc" />
+                <ScalarProperty Name="legajo" ColumnName="legajo" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniInscripcionesMateriasDetalle">
+            <EntityTypeMapping TypeName="Domain.uniInscripcionesMateriasDetalle">
+              <MappingFragment StoreEntitySet="uniInscripcionesMateriasDetalle">
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="cursoId" ColumnName="cursoId" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="codcur" ColumnName="codcur" />
+                <ScalarProperty Name="codmat" ColumnName="codmat" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniMatriculaciones">
+            <EntityTypeMapping TypeName="Domain.uniMatriculaciones">
+              <MappingFragment StoreEntitySet="uniMatriculaciones">
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="anioMaximo" ColumnName="anioMaximo" />
+                <ScalarProperty Name="claveOrigen" ColumnName="claveOrigen" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="mensajeMatri" ColumnName="mensajeMatri" />
+                <ScalarProperty Name="Eliminada" ColumnName="Eliminada" />
+                <ScalarProperty Name="condicionDePago" ColumnName="condicionDePago" />
+                <ScalarProperty Name="tipoMatriculacion" ColumnName="tipoMatriculacion" />
+                <ScalarProperty Name="ciclo" ColumnName="ciclo" />
+                <ScalarProperty Name="legajoProvisorio" ColumnName="legajoProvisorio" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UniProfesoresHs">
+            <EntityTypeMapping TypeName="Domain.UniProfesoresHs">
+              <MappingFragment StoreEntitySet="UniProfesoresHs">
+                <ScalarProperty Name="HorasAprobadas" ColumnName="HorasAprobadas" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="NovedadesId" ColumnName="NovedadesId" />
+                <ScalarProperty Name="SalidaEditada" ColumnName="SalidaEditada" />
+                <ScalarProperty Name="EntradaEditada" ColumnName="EntradaEditada" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="HsEfectivas" ColumnName="HsEfectivas" />
+                <ScalarProperty Name="HsPlanificadas" ColumnName="HsPlanificadas" />
+                <ScalarProperty Name="LegajoProfesorReemplazo" ColumnName="LegajoProfesorReemplazo" />
+                <ScalarProperty Name="NoPlanificado" ColumnName="NoPlanificado" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaCursada" ColumnName="FechaCursada" />
+                <ScalarProperty Name="Revision" ColumnName="Revision" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Ausente" ColumnName="Ausente" />
+                <ScalarProperty Name="Salida" ColumnName="Salida" />
+                <ScalarProperty Name="Entrada" ColumnName="Entrada" />
+                <ScalarProperty Name="LegajoProfesor" ColumnName="LegajoProfesor" />
+                <ScalarProperty Name="ClaseNro" ColumnName="ClaseNro" />
+                <ScalarProperty Name="CursoId" ColumnName="CursoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniReconocimientoMaterias">
+            <EntityTypeMapping TypeName="Domain.uniReconocimientoMaterias">
+              <MappingFragment StoreEntitySet="uniReconocimientoMaterias">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="papel2" ColumnName="papel2" />
+                <ScalarProperty Name="papel1" ColumnName="papel1" />
+                <ScalarProperty Name="CodigoComprobacion" ColumnName="CodigoComprobacion" />
+                <ScalarProperty Name="carrera" ColumnName="carrera" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="nroDocumento" ColumnName="nroDocumento" />
+                <ScalarProperty Name="tipoDocumento" ColumnName="tipoDocumento" />
+                <ScalarProperty Name="fechaVencimiento" ColumnName="fechaVencimiento" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="fechaResolucion" ColumnName="fechaResolucion" />
+                <ScalarProperty Name="numeroResolucion" ColumnName="numeroResolucion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="legajo" ColumnName="legajo" />
+                <ScalarProperty Name="numeroTramite" ColumnName="numeroTramite" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniReconocimientoMateriasDetalle">
+            <EntityTypeMapping TypeName="Domain.uniReconocimientoMateriasDetalle">
+              <MappingFragment StoreEntitySet="uniReconocimientoMateriasDetalle">
+                <ScalarProperty Name="CodmatOptativa" ColumnName="CodmatOptativa" />
+                <ScalarProperty Name="CodigoComprobacion" ColumnName="CodigoComprobacion" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="codmat" ColumnName="codmat" />
+                <ScalarProperty Name="idReconocimientoMaterias" ColumnName="idReconocimientoMaterias" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniReconocimientoMateriasFirmantes">
+            <EntityTypeMapping TypeName="Domain.uniReconocimientoMateriasFirmantes">
+              <MappingFragment StoreEntitySet="uniReconocimientoMateriasFirmantes">
+                <ScalarProperty Name="CodigoComprobacion" ColumnName="CodigoComprobacion" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="legajo" ColumnName="legajo" />
+                <ScalarProperty Name="idReconocimientoMaterias" ColumnName="idReconocimientoMaterias" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniAlumnos">
+            <EntityTypeMapping TypeName="Domain.uniAlumnos">
+              <MappingFragment StoreEntitySet="uniAlumnos">
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="CanalDescripcion" ColumnName="CanalDescripcion" />
+                <ScalarProperty Name="IdCanal" ColumnName="IdCanal" />
+                <ScalarProperty Name="Modalidad" ColumnName="Modalidad" />
+                <ScalarProperty Name="CuatriIngreso" ColumnName="CuatriIngreso" />
+                <ScalarProperty Name="CicloIngreso" ColumnName="CicloIngreso" />
+                <ScalarProperty Name="IdEntidad" ColumnName="IdEntidad" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="PaisDocumento" ColumnName="PaisDocumento" />
+                <ScalarProperty Name="documentoExtranjero" ColumnName="documentoExtranjero" />
+                <ScalarProperty Name="version2" ColumnName="version2" />
+                <ScalarProperty Name="regional_cursa" ColumnName="regional_cursa" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="finscrip" ColumnName="finscrip" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+                <ScalarProperty Name="regional" ColumnName="regional" />
+                <ScalarProperty Name="carrera" ColumnName="carrera" />
+                <ScalarProperty Name="tramite" ColumnName="tramite" />
+                <ScalarProperty Name="nropas" ColumnName="nropas" />
+                <ScalarProperty Name="nacion" ColumnName="nacion" />
+                <ScalarProperty Name="argext" ColumnName="argext" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="libenr" ColumnName="libenr" />
+                <ScalarProperty Name="libciv" ColumnName="libciv" />
+                <ScalarProperty Name="cedide" ColumnName="cedide" />
+                <ScalarProperty Name="docnac" ColumnName="docnac" />
+                <ScalarProperty Name="lugar" ColumnName="lugar" />
+                <ScalarProperty Name="fecnac" ColumnName="fecnac" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="legdef" ColumnName="legdef" />
+                <ScalarProperty Name="legprovi" ColumnName="legprovi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uniCorreoEnviado">
+            <EntityTypeMapping TypeName="Domain.uniCorreoEnviado">
+              <MappingFragment StoreEntitySet="uniCorreoEnviado">
+                <ScalarProperty Name="EstadoAviso" ColumnName="EstadoAviso" />
+                <ScalarProperty Name="Receptor" ColumnName="Receptor" />
+                <ScalarProperty Name="Emisor" ColumnName="Emisor" />
+                <ScalarProperty Name="FechaDeEnvio" ColumnName="FechaDeEnvio" />
+                <ScalarProperty Name="cursoid" ColumnName="cursoid" />
+                <ScalarProperty Name="legajoProfesor" ColumnName="legajoProfesor" />
+                <ScalarProperty Name="codins" ColumnName="codins" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

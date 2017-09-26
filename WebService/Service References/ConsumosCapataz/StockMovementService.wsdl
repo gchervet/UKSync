@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="StockSetStockConsumptionForOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FinishedProduct" type="tns:StockMovement" />
+            <s:element minOccurs="0" maxOccurs="1" name="RawMaterials" type="tns:ArrayOfStockMovement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StockMovement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Batch" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfStockMovement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StockMovement" nillable="true" type="tns:StockMovement" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="StockSetStockConsumptionForOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StockSetStockConsumptionForOrderResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetStockConsumptionForOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdCompany" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FinishedProduct" type="tns:StockMovement" />
+            <s:element minOccurs="0" maxOccurs="1" name="RawMaterials" type="tns:ArrayOfStockMovement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetStockConsumptionForOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetStockConsumptionForOrderResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="StockSetStockConsumptionForOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:StockSetStockConsumptionForOrder" />
+  </wsdl:message>
+  <wsdl:message name="StockSetStockConsumptionForOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:StockSetStockConsumptionForOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetStockConsumptionForOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:SetStockConsumptionForOrder" />
+  </wsdl:message>
+  <wsdl:message name="SetStockConsumptionForOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:SetStockConsumptionForOrderResponse" />
+  </wsdl:message>
+  <wsdl:portType name="StockMovementServiceSoap">
+    <wsdl:operation name="StockSetStockConsumptionForOrder">
+      <wsdl:input message="tns:StockSetStockConsumptionForOrderSoapIn" />
+      <wsdl:output message="tns:StockSetStockConsumptionForOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetStockConsumptionForOrder">
+      <wsdl:input message="tns:SetStockConsumptionForOrderSoapIn" />
+      <wsdl:output message="tns:SetStockConsumptionForOrderSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="StockMovementServiceHttpGet" />
+  <wsdl:portType name="StockMovementServiceHttpPost" />
+  <wsdl:binding name="StockMovementServiceSoap" type="tns:StockMovementServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="StockSetStockConsumptionForOrder">
+      <soap:operation soapAction="http://tempuri.org/StockSetStockConsumptionForOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStockConsumptionForOrder">
+      <soap:operation soapAction="http://tempuri.org/SetStockConsumptionForOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StockMovementServiceSoap12" type="tns:StockMovementServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="StockSetStockConsumptionForOrder">
+      <soap12:operation soapAction="http://tempuri.org/StockSetStockConsumptionForOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStockConsumptionForOrder">
+      <soap12:operation soapAction="http://tempuri.org/SetStockConsumptionForOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StockMovementServiceHttpGet" type="tns:StockMovementServiceHttpGet">
+    <http:binding verb="GET" />
+  </wsdl:binding>
+  <wsdl:binding name="StockMovementServiceHttpPost" type="tns:StockMovementServiceHttpPost">
+    <http:binding verb="POST" />
+  </wsdl:binding>
+  <wsdl:service name="StockMovementService">
+    <wsdl:port name="StockMovementServiceSoap" binding="tns:StockMovementServiceSoap">
+      <soap:address location="http://localhost:58135/StockMovementService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StockMovementServiceSoap12" binding="tns:StockMovementServiceSoap12">
+      <soap12:address location="http://localhost:58135/StockMovementService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StockMovementServiceHttpGet" binding="tns:StockMovementServiceHttpGet">
+      <http:address location="http://localhost:58135/StockMovementService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StockMovementServiceHttpPost" binding="tns:StockMovementServiceHttpPost">
+      <http:address location="http://localhost:58135/StockMovementService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

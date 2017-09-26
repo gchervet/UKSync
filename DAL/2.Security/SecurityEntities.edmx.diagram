@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2fcf86a0c5a64b00bf155345fcb920de" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="Domain.CtaAplicacionDeConsumos" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Domain.CtaCierresDePeriodos" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Domain.CtaMovimientos" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="Domain.CtaMovimientosAplicacion" Width="1.5" PointX="5.25" PointY="5.5" />
+        <EntityTypeShape EntityType="Domain.CtaMovimientosCuotas" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="Domain.CtaMovimientosFinancieras" Width="1.5" PointX="3" PointY="12.375" />
+        <EntityTypeShape EntityType="Domain.SN_Controlador_Edificio" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Domain.SN_Fichadas" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Domain.uniActas" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Domain.uniActasAlumnos" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Domain.UniAniosLectivosFacturados" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Domain.UniAranceles" Width="1.5" PointX="5.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Domain.UniCtaCteEstado" Width="1.5" PointX="7.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Domain.uniCuatrimestres" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Domain.uniCursos" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Domain.uniCursosDias" Width="1.5" PointX="11.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Domain.uniInscripcionesMaterias" Width="1.5" PointX="11.75" PointY="11.75" />
+        <EntityTypeShape EntityType="Domain.uniInscripcionesMateriasDetalle" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Domain.uniMatriculaciones" Width="1.5" PointX="13.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Domain.UniProfesoresHs" Width="1.5" PointX="13.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Domain.uniReconocimientoMaterias" Width="1.5" PointX="5.75" PointY="14.75" />
+        <EntityTypeShape EntityType="Domain.uniReconocimientoMateriasDetalle" Width="1.5" PointX="7.75" PointY="14.75" />
+        <EntityTypeShape EntityType="Domain.uniReconocimientoMateriasFirmantes" Width="1.5" PointX="15.75" PointY="0.75" />
+        <AssociationConnector Association="Domain.FK_CtaMovimientosAplicacion_CtaMovimientos" />
+        <AssociationConnector Association="Domain.FK_CtaMovimientosCuotas_CtaMovimientos" />
+        <AssociationConnector Association="Domain.FK_CtaMovimientosFinancieras_CtaMovimientos" />
+        <AssociationConnector Association="Domain.FK_CtaMovimientosAplicacion_CtaMovimientosCuotas" />
+        <AssociationConnector Association="Domain.FK_CtaMovimientosAplicacion_CtaMovimientosCuotas1" />
+        <EntityTypeShape EntityType="Domain.uniAlumnos" Width="1.5" PointX="10.375" PointY="15.75" />
+        <EntityTypeShape EntityType="Domain.uniCorreoEnviado" Width="1.5" PointX="12.375" PointY="15.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
