@@ -54,13 +54,13 @@ namespace Distribution.Controllers
         [Route("Sincronizar")]
         [HttpGet, RequireHttps]
         [AllowAnonymous]
-        public HttpResponseMessage Sincronizar(int tolerancia)
+        public HttpResponseMessage Sincronizar(int tolerancia, int toleranciaEntrada, int toleranciaSalida, bool toleranciaAcumuladaDisponible)
         {
             ParaEnviarAEnProceso();
             SincroFichadas();
             EnProcesoAEnviado();
             ParaEnviarAEnProcesoSNFichadas();
-            TransformarSNFichadasEnProceso(tolerancia);
+            TransformarSNFichadasEnProceso(tolerancia, toleranciaEntrada, toleranciaSalida, toleranciaAcumuladaDisponible);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -104,7 +104,7 @@ namespace Distribution.Controllers
         [Route("TransformarSNFichadasEnProceso")]
         [HttpGet, RequireHttps]
         [AllowAnonymous]
-        public void TransformarSNFichadasEnProceso(int toleranceSeconds)
+        public void TransformarSNFichadasEnProceso(int toleranceSeconds, int toleranciaEntrada, int toleranciaSalida, bool toleranciaAcumuladaDisponible)
         {
             IList<SN_Fichadas> snfichadasIList = sNFichadasService.GetFichadasEnProceso();
             IList<SN_Fichadas> snfichadasIListFinal = sNFichadasService.EliminarRegistrosSucesivos(snfichadasIList, toleranceSeconds);
@@ -131,9 +131,10 @@ namespace Distribution.Controllers
                                 uniProfesoresHs.Salida = snfichada.Fecha.Value;
                                 uniProfesoresHs.SalidaEditada = snfichada.Fecha.Value;
                                 uniProfesoresHs.FechaModificacion = DateTime.Today;
-                                diff = uniProfesoresHs.Salida.Value - uniProfesoresHs.Entrada.Value;
-                                decimal hours = (decimal)diff.TotalHours;
-                                uniProfesoresHs.HsEfectivas = hours;
+                                //diff = uniProfesoresHs.Salida.Value - uniProfesoresHs.Entrada.Value;
+                                //decimal hours = (decimal)diff.TotalHours;
+                                //uniProfesoresHs.HsEfectivas = hours;
+                                uniProfesoresHsService.CalcularHoras(uniProfesoresHs, infoF, toleranciaEntrada, toleranciaSalida, toleranciaAcumuladaDisponible);
                             }
                             else
                             {
@@ -206,9 +207,10 @@ namespace Distribution.Controllers
                                 {
                                     uniProfesoresHs.Salida = snfichada.Fecha;
                                     uniProfesoresHs.SalidaEditada = snfichada.Fecha;
-                                    diff = uniProfesoresHs.Salida.Value - uniProfesoresHs.Entrada.Value;
-                                    decimal hours = (decimal)diff.TotalHours;
-                                    uniProfesoresHs.HsEfectivas = hours;
+                                    //diff = uniProfesoresHs.Salida.Value - uniProfesoresHs.Entrada.Value;
+                                    //decimal hours = (decimal)diff.TotalHours;
+                                    //uniProfesoresHs.HsEfectivas = hours;
+                                    uniProfesoresHsService.CalcularHoras(uniProfesoresHs, infoFichada, toleranciaEntrada, toleranciaSalida, toleranciaAcumuladaDisponible);
                                     uniProfesoresHs.FechaModificacion = DateTime.Today;
                                     notFound = false;
                                     uniProfesoresHsService.Update(uniProfesoresHs);

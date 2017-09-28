@@ -134,11 +134,28 @@ namespace UKSync
             EventLog.WriteEntry("ParaEnviarAEnProcesoSNFichadas", EventLogEntryType.Information);
 
             string toleranceString = ConfigurationManager.AppSettings["ToleranceInSeconds"];
-            int toleranceSeconds = 120;
-            if (!string.IsNullOrEmpty(toleranceString))
-                toleranceSeconds = Convert.ToInt32(toleranceString);
+            string toleranciaEntradaString = ConfigurationManager.AppSettings["ToleranciaEntrada"];
+            string toleranciaSalidaString = ConfigurationManager.AppSettings["ToleranciaSalida"];
+            string acumulativasString = ConfigurationManager.AppSettings["Acumulativas"];
+
+            int toleranceSeconds = 0;
+            if(!int.TryParse(toleranceString, out toleranceSeconds))
+                toleranceSeconds = 120;
+
+            int toleranciaEntrada = 0;
+            int.TryParse(toleranciaEntradaString, out toleranciaEntrada);
+
+            int toleranciaSalida = 0;
+            int.TryParse(toleranciaSalidaString, out toleranciaSalida);
+
+            bool acumulativas = false;
+            bool.TryParse(acumulativasString, out acumulativas);
+
             Dictionary<string, string> toleranceSecondsDic = new Dictionary<string, string>();
             toleranceSecondsDic.Add("toleranceSeconds", toleranceSeconds.ToString());
+            toleranceSecondsDic.Add("toleranciaEntrada", toleranciaEntrada.ToString());
+            toleranceSecondsDic.Add("toleranciaSalida", toleranciaSalida.ToString());
+            toleranceSecondsDic.Add("toleranciaAcumuladaDisponible", acumulativas.ToString());
 
             AcademicoApiClient.GetInstance().ApiGet<HttpResponseMessage>("api/Sync/TransformarSNFichadasEnProceso", toleranceSecondsDic);
             EventLog.WriteEntry("TransformarSNFichadasEnProceso", EventLogEntryType.Information);

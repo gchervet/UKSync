@@ -143,6 +143,162 @@ namespace Service.Security
             return desvioList;
         }
 
+        public void CalcularHoras(UniProfesoresHs mProfesoresHs, sp_get_ProfesoresHs_Result profesoresHs, int toleranciaEntrada, int toleranciaSalida, bool toleranciaAcumuladaDisponible)
+        {
+            bool toleranciaEntradaDisponible = toleranciaEntrada > 0;
+            bool toleranciaSalidaDisponible = toleranciaSalida > 0;
+            int toleranciaAcumulable = toleranciaEntrada + toleranciaSalida;
+
+            if (mProfesoresHs.Salida.Value.Date != DateTime.MinValue.Date && mProfesoresHs.Entrada.Value.Date != DateTime.MinValue.Date)
+            {
+                TimeSpan _tiempoDictado = (mProfesoresHs.Salida.Value - mProfesoresHs.Entrada.Value);
+                DateTime entradaReal = mProfesoresHs.Entrada.Value;
+                DateTime entradaPlanificada = profesoresHs.HoraInicio.Value;
+                DateTime salidaReal = mProfesoresHs.Salida.Value;
+                DateTime salidaPlanificada = profesoresHs.HoraFin.Value;
+
+                // --E--|-------|--S--
+                if (entradaReal.TimeOfDay <= entradaPlanificada.TimeOfDay && salidaReal.TimeOfDay >= salidaPlanificada.TimeOfDay)
+                {
+                    _tiempoDictado = (profesoresHs.HoraFin.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                }
+                // --E--|-----S--|----
+                else if (entradaReal.TimeOfDay <= entradaPlanificada.TimeOfDay && salidaReal.TimeOfDay <= salidaPlanificada.TimeOfDay)
+                {
+                    if (toleranciaEntradaDisponible || toleranciaAcumuladaDisponible)
+                    {
+                        // Se toma en cuenta la tolerancia de entrada
+                        if (toleranciaEntradaDisponible && salidaReal.TimeOfDay >= entradaPlanificada.TimeOfDay)
+                        {
+                            TimeSpan _tiempoFaltante = (profesoresHs.HoraFin.Value.TimeOfDay - mProfesoresHs.Salida.Value.TimeOfDay);
+                            if ((_tiempoFaltante.Hours * 60) + _tiempoFaltante.Minutes <= toleranciaSalida)
+                            {
+                                _tiempoDictado = (profesoresHs.HoraFin.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                            }
+                            else
+                            {
+                                _tiempoDictado = (mProfesoresHs.Salida.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                            }
+                        }
+                        else if (toleranciaAcumuladaDisponible && salidaReal.TimeOfDay >= entradaPlanificada.TimeOfDay)
+                        {
+                            TimeSpan _tiempoFaltante = (profesoresHs.HoraFin.Value.TimeOfDay - mProfesoresHs.Salida.Value.TimeOfDay);
+                            if ((_tiempoFaltante.Hours * 60) + _tiempoFaltante.Minutes <= toleranciaAcumulable)
+                            {
+                                toleranciaAcumulable = toleranciaAcumulable - ((_tiempoFaltante.Hours * 60) + _tiempoFaltante.Minutes);
+                                _tiempoDictado = (profesoresHs.HoraFin.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                            }
+                            else
+                            {
+                                _tiempoDictado = (mProfesoresHs.Salida.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                            }
+                        }
+                        else
+                        {
+                            _tiempoDictado = (DateTime.MinValue.TimeOfDay - DateTime.MinValue.TimeOfDay);
+                        }
+                    }
+                    else
+                    {
+                        // No se toma en cuenta la tolerancia de entrada
+                        _tiempoDictado = (mProfesoresHs.Salida.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                    }
+                }
+                // ----|--E-----|--S--
+                else if (entradaReal.TimeOfDay >= entradaPlanificada.TimeOfDay && salidaReal.TimeOfDay >= salidaPlanificada.TimeOfDay)
+                {
+                    if (toleranciaSalidaDisponible || toleranciaAcumuladaDisponible)
+                    {
+                        // Se toma en cuenta la tolerancia de salida
+                        if (toleranciaSalidaDisponible && entradaReal.TimeOfDay <= salidaPlanificada.TimeOfDay)
+                        {
+                            TimeSpan _tiempoFaltante = (mProfesoresHs.Entrada.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                            if ((_tiempoFaltante.Hours * 60) + _tiempoFaltante.Minutes <= toleranciaEntrada)
+                            {
+                                _tiempoDictado = (profesoresHs.HoraFin.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                            }
+                            else
+                            {
+                                _tiempoDictado = (profesoresHs.HoraFin.Value.TimeOfDay - mProfesoresHs.Entrada.Value.TimeOfDay);
+                            }
+                        }
+                        else if (toleranciaAcumuladaDisponible && entradaReal.TimeOfDay <= salidaPlanificada.TimeOfDay)
+                        {
+                            TimeSpan _tiempoFaltante = (mProfesoresHs.Entrada.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                            if ((_tiempoFaltante.Hours * 60) + _tiempoFaltante.Minutes <= toleranciaAcumulable)
+                            {
+                                _tiempoDictado = (profesoresHs.HoraFin.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                            }
+                            else
+                            {
+                                _tiempoDictado = (profesoresHs.HoraFin.Value.TimeOfDay - mProfesoresHs.Entrada.Value.TimeOfDay);
+                            }
+                        }
+                        else
+                        {
+                            _tiempoDictado = (DateTime.MinValue.TimeOfDay - DateTime.MinValue.TimeOfDay);
+                        }
+                    }
+                    else
+                    {
+                        // No se toma en cuenta la tolerancia de salida
+                        _tiempoDictado = (profesoresHs.HoraFin.Value.TimeOfDay - mProfesoresHs.Entrada.Value.TimeOfDay);
+                    }
+                }
+                // ----|--E---S--|----
+                else if (entradaReal.TimeOfDay >= entradaPlanificada.TimeOfDay && salidaReal.TimeOfDay <= salidaPlanificada.TimeOfDay)
+                {
+                    TimeSpan _tiempoFaltanteEntrada = (mProfesoresHs.Entrada.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                    TimeSpan _tiempoFaltanteSalida = (profesoresHs.HoraFin.Value.TimeOfDay - mProfesoresHs.Salida.Value.TimeOfDay);
+
+                    if ((_tiempoFaltanteEntrada.Hours * 60) + _tiempoFaltanteEntrada.Minutes <= toleranciaEntrada || (_tiempoFaltanteEntrada.Hours * 60) + _tiempoFaltanteEntrada.Minutes <= toleranciaAcumulable)
+                    {
+                        // El profesor tiene tolerancia en la entrada
+                        if ((_tiempoFaltanteSalida.Hours * 60) + _tiempoFaltanteSalida.Minutes <= toleranciaSalida || (_tiempoFaltanteSalida.Hours * 60) + _tiempoFaltanteSalida.Minutes <= toleranciaAcumulable)
+                        {
+                            // El profesor tiene tolerancia en la salida
+                            _tiempoDictado = (profesoresHs.HoraFin.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                        }
+                        else
+                        {
+                            // El profesor NO tiene tolerancia en la salida
+                            _tiempoDictado = (mProfesoresHs.Salida.Value.TimeOfDay - profesoresHs.HoraInicio.Value.TimeOfDay);
+                        }
+                    }
+                    else
+                    {
+                        // El profesor NO tiene tolerancia en la entrada
+                        if (toleranciaAcumuladaDisponible)
+                        {
+                            toleranciaEntrada = toleranciaAcumulable - (_tiempoFaltanteEntrada.Hours * 60) + _tiempoFaltanteEntrada.Minutes;
+                        }
+                        if ((_tiempoFaltanteSalida.Hours * 60) + _tiempoFaltanteSalida.Minutes <= toleranciaSalida || (_tiempoFaltanteSalida.Hours * 60) + _tiempoFaltanteSalida.Minutes <= toleranciaAcumulable)
+                        {
+                            // El profesor tiene tolerancia en la salida
+                            _tiempoDictado = (profesoresHs.HoraFin.Value.TimeOfDay - mProfesoresHs.Entrada.Value.TimeOfDay);
+                        }
+                        else
+                        {
+                            // El profesor NO tiene tolerancia en la salida 
+                            _tiempoDictado = (mProfesoresHs.Salida.Value.TimeOfDay - mProfesoresHs.Entrada.Value.TimeOfDay);
+                        }
+                    }
+                }
+                else
+                {
+                    _tiempoDictado = (DateTime.MinValue.TimeOfDay - DateTime.MinValue.TimeOfDay);
+                }
+
+                double hsCalculadas = _tiempoDictado.Hours + _tiempoDictado.Minutes * 0.01;
+                mProfesoresHs.HsEfectivas = (decimal)hsCalculadas;
+
+                if (mProfesoresHs.HsEfectivas > mProfesoresHs.HsPlanificadas)
+                    mProfesoresHs.HsEfectivas = mProfesoresHs.HsPlanificadas;
+            }
+            //return mProfesoresHs;
+        }
+
+
         private List<UniProfesorInstitutoDto> ComprobarDesviosEnviados(List<UniProfesorInstitutoDto> desvioList)
         {
             List<UniProfesorInstitutoDto> rtn = new List<UniProfesorInstitutoDto>();
@@ -198,5 +354,6 @@ namespace Service.Security
             }
             return null;
         }
+
     }
 }
