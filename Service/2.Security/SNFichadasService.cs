@@ -93,37 +93,84 @@ namespace Service.Security
 
         public IList<SN_Fichadas> EliminarRegistrosSucesivos(IList<SN_Fichadas> snfichadasIList, int toleranceSeconds)
         {
-            IList<SN_Fichadas> snfichadasIListFinal = snfichadasIList.ToList();
+            IList<int> idsIgnorados = new List<int>();
+            var query =
+                from c in snfichadasIList
+                group c by new
+                {
+                    c.Planta,
+                    c.legajo,
+                } into g
+                select g;
 
-            int legajo = 0;
-            DateTime horaFichada = new DateTime();
-
-            foreach (SN_Fichadas snfichada in snfichadasIList)
+            foreach (var fichadaList in query)
             {
-                snfichada.legajo = snfichada.legajo == 0 ? snfichada.Tarjeta.Value : snfichada.legajo;
-
-                if (legajo != snfichada.legajo)
+                int legajo = fichadaList.First().legajo == 0 ? fichadaList.First().Tarjeta.Value : fichadaList.First().legajo;
+                SN_Fichadas pivot = sNFichadasDal.GetSNFichadaByEstadoSincro(EstadoSincroEnum.Enviado.GetHashCode()).Where(f => f.Planta == fichadaList.First().Planta && (f.legajo == legajo || f.Tarjeta.Value == legajo)).OrderBy(f => f.Fecha).LastOrDefault();
+                foreach (SN_Fichadas fichada in fichadaList)
                 {
-                    horaFichada = snfichada.Fecha.Value;
-                    legajo = snfichada.legajo;
-                }
-                else
-                {
-                    TimeSpan diff = snfichada.Fecha.Value - horaFichada;
-
-                    if (diff.TotalSeconds < toleranceSeconds)
+                    fichada.legajo = fichada.legajo == 0 ? fichada.Tarjeta.Value : fichada.legajo;
+                    if (pivot != null)
                     {
-                        snfichadasIListFinal.Remove(snfichada);
-                        sNFichadasDal.ChangeEstadoSincro(snfichada.Id, EstadoSincroEnum.Ignorado.GetHashCode());
+                        TimeSpan diff = fichada.Fecha.Value - pivot.Fecha.Value;
+                        if (diff.TotalSeconds < toleranceSeconds)
+                        {
+                            idsIgnorados.Add(fichada.Id);
+                            sNFichadasDal.ChangeEstadoSincro(fichada.Id, EstadoSincroEnum.Ignorado.GetHashCode());
+                        }
+                        else
+                            pivot = fichada;
                     }
                     else
-                        horaFichada = snfichada.Fecha.Value;
-                }
+                        pivot = fichada;
 
+                }
             }
 
-            return snfichadasIListFinal;
+            foreach (int id in idsIgnorados)
+            {
+                snfichadasIList.Remove(snfichadasIList.Where(f => f.Id == id).First());
+            }
+
+            return snfichadasIList;
         }
+
+
+        //public IList<SN_Fichadas> EliminarRegistrosSucesivos(IList<SN_Fichadas> snfichadasIList, int toleranceSeconds)
+        //{
+        //    IList<SN_Fichadas> snfichadasIListFinal = snfichadasIList.ToList();
+
+        //    SN_Fichadas snfichadaMenor = snfichadasIListFinal.OrderBy(x => x.Fecha).FirstOrDefault();
+        //    IList<SN_Fichadas> snFichadasExistentes = sNFichadasDal.GetSNFichadaByEstadoSincro(EstadoSincroEnum.Enviado.GetHashCode()).Where(x => x.Fecha.Value.Date >= snfichadaMenor.Fecha.Value.Date).ToList();
+            
+        //    IList<SN_Fichadas> snfichadasIListTotal = snfichadasIListFinal.Union(snFichadasExistentes).ToList();
+        //    IList<SN_Fichadas> snfichadasIListTotalIgnore = new List<SN_Fichadas>();
+
+        //    foreach (SN_Fichadas snfichada in snfichadasIList)
+        //    {
+        //        snfichada.legajo = snfichada.legajo == 0 ? snfichada.Tarjeta.Value : snfichada.legajo;
+
+        //        foreach (SN_Fichadas snFichadaTotal in snfichadasIListTotal)
+        //        {
+        //            if (snfichada.Id != snFichadaTotal.Id)
+        //            {
+        //                TimeSpan diff = snfichada.Fecha.Value - snFichadaTotal.Fecha.Value;
+
+        //                if (diff.TotalSeconds < toleranceSeconds)
+        //                {
+        //                    snfichadasIListFinal.Remove(snfichada);
+        //                    snfichadasIListTotal.Remove(snfichada);
+
+        //                    sNFichadasDal.ChangeEstadoSincro(snfichada.Id, EstadoSincroEnum.Ignorado.GetHashCode());
+        //                }
+        //                else
+        //                    horaFichada = snfichada.Fecha.Value;
+        //            }
+        //        }
+        //    }
+
+        //    return snfichadasIListFinal;
+        //}
 
     }
 }
