@@ -106,7 +106,8 @@ namespace Service.Security
             foreach (var fichadaList in query)
             {
                 int legajo = fichadaList.First().legajo == 0 ? fichadaList.First().Tarjeta.Value : fichadaList.First().legajo;
-                SN_Fichadas pivot = sNFichadasDal.GetSNFichadaByEstadoSincro(EstadoSincroEnum.Enviado.GetHashCode()).Where(f => f.Planta == fichadaList.First().Planta && (f.legajo == legajo || f.Tarjeta.Value == legajo)).OrderBy(f => f.Fecha).LastOrDefault();
+                IList<SN_Fichadas> pivotList = sNFichadasDal.GetSNFichadaByEstadoSincro(EstadoSincroEnum.Enviado.GetHashCode()).Where(f => f.Planta == fichadaList.First().Planta && (f.legajo == legajo || f.Tarjeta.Value == legajo)).OrderBy(f => f.Fecha).ToList();
+                SN_Fichadas pivot = pivotList.LastOrDefault();
                 foreach (SN_Fichadas fichada in fichadaList)
                 {
                     fichada.legajo = fichada.legajo == 0 ? fichada.Tarjeta.Value : fichada.legajo;
